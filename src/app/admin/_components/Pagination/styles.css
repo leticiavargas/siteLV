@@ -1,0 +1,73 @@
+.adminPagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--neutral-color-200);
+}
+
+.adminPaginationInfo {
+  font-size: 0.8125rem;
+  color: var(--neutral-color-900);
+  opacity: 0.45;
+}
+
+.adminPaginationControls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.adminPaginationBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.375rem;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 0.5rem;
+  background-color: var(--neutral-color-50);
+  color: var(--neutral-color-900);
+  font-size: 0.8125rem;
+  font-family: var(--font-inter);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--neutral-color-100);
+    border-color: var(--neutral-color-300);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+.adminPaginationBtn--active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--color-white);
+  font-weight: var(--medium);
+
+  &:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    opacity: 0.9;
+  }
+}
+
+.adminPaginationEllipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  font-size: 0.8125rem;
+  color: var(--neutral-color-900);
+  opacity: 0.4;
+}

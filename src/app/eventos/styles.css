@@ -1,0 +1,57 @@
+.eventosPage {
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Filtros ─────────────────────────────────────────────────── */
+
+.eventosFiltros {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.eventosFiltroBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  border: 1.5px solid var(--neutral-color-300);
+  background-color: transparent;
+  color: var(--neutral-color-900);
+  font-size: 0.9375rem;
+  font-family: var(--font-inter);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+
+  &:hover:not(.eventosFiltroBtn--ativo) {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
+.eventosFiltroBtn--ativo {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--color-white);
+  font-weight: var(--medium);
+}
+
+/* ── Grid ────────────────────────────────────────────────────── */
+
+.eventosGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Estados vazios ──────────────────────────────────────────── */
+
+.eventosEmpty {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+  font-size: 0.9375rem;
+}

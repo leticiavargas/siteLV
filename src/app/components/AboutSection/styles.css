@@ -1,0 +1,334 @@
+.aboutSection {
+  padding: 3rem 5rem;
+  background-color: var(--neutral-color-100);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.aboutCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 380px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
+  background: 
+    linear-gradient(135deg, color-mix(in srgb, var(--color-white) 5%, transparent) 0%, transparent 55%),
+    var(--secondary-color);
+  transition: background 0.3s ease;
+  box-shadow: 0 20px 50px -20px rgba(0,0,0,0.5);
+  color: var(--neutral-color-100);
+}
+
+/* ── Gutter (coluna esquerda) ────────────────────────────────────────────── */
+
+.aboutGutter {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Foto de fundo da gutter */
+.aboutGutterPhoto {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutScanBar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+  transition: top 0.05s linear; /* Para seguir o timing do intervalo */
+}
+
+.aboutGutterImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.2) brightness(1.1) sepia(0.35) hue-rotate(240deg);
+  /* Isso dá um tom levemente azulado/frio que foge do roxo saturado */
+  mix-blend-mode: lighten; 
+  opacity: 0.4;
+}
+
+/* Placeholder de iniciais enquanto não há foto */
+.aboutGutterPlaceholder {
+  font-size: 5rem;
+  font-family: var(--font-fivo-sans);
+  font-weight: var(--bold);
+  color: color-mix(in srgb, var(--color-white) 15%, transparent);
+  user-select: none;
+}
+
+/* Overlay escuro à esquerda com os números de linha */
+.aboutGutterLines {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 44px;
+  background: color-mix(in srgb, var(--secondary-color) 82%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--color-white) 8%, transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  padding: 1.5rem 0;
+}
+
+.aboutLineNum {
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: color-mix(in srgb, var(--color-white) 18%, transparent);
+  text-align: right;
+  padding-right: 8px;
+  line-height: 1.65;
+  transition: color 0.08s ease;
+  user-select: none;
+}
+
+.aboutLineNum--scan {
+  color: color-mix(in srgb, var(--color-white) 65%, transparent);
+}
+
+.aboutLineNum--active {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* ── Conteúdo (coluna direita) ───────────────────────────────────────────── */
+
+.aboutContent {
+  padding: 3rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 3rem;
+  position: relative;
+  align-items: center;
+}
+
+.aboutContent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: radial-gradient(var(--color-white) 1px, transparent 1px);
+  background-size: 20px 20px; /* Grid de hardware */
+}
+
+.aboutTerminalStats {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-white) 5%, transparent);
+  padding: 1.5rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-black) 10%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  opacity: 0.6; /* Sutil, como marca d'água */
+}
+
+.aboutTerminalStats .statsHeader {
+  color: color-mix(in srgb, var(--color-white) 50%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
+}
+
+.aboutTerminalStats .statsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aboutTerminalStats .statsFooter {
+  margin-top: auto;
+  font-size: 0.6rem;
+  color: color-mix(in srgb, var(--color-white) 25%, transparent);
+  text-align: right;
+}
+
+/* Definição da animação de piscar */
+@keyframes terminalBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.terminalCursor {
+  margin-left: 0.25rem;
+  color: var(--primary-color); 
+  font-weight: bold;
+  animation: terminalBlink 1.1s steps(2, start) infinite; 
+}
+
+.terminalCursor {
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Respeito à preferência de redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .terminalCursor {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+.aboutFileTag {
+  font-family: monospace;
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--primary-color) 85%, var(--color-white));
+  letter-spacing: 0.01em;
+}
+
+.aboutRole {
+  font-size: 0.8125rem;
+  font-weight: var(--medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-white) 45%, transparent);
+  margin-top: 0.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.aboutTerminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-white) 5%, transparent);
+  margin-bottom: 2rem;
+}
+
+.aboutTerminalHeader .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-white) 15%, transparent);
+}
+
+.terminalPath {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: color-mix(in srgb, var(--color-white) 30%, transparent);
+  margin-left: 10px;
+}
+
+.aboutHeading {
+  font-size: 3rem;
+  font-family: var(--font-fivo-sans);
+  font-weight: var(--bold);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  text-shadow: 2px 2px 0px var(--primary-color);
+}
+
+.aboutHeading::after {
+  content: "()";
+  color: var(--primary-color);
+  font-family: monospace;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  opacity: 0.6;
+}
+
+.aboutDescription {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: color-mix(in srgb, var(--color-white) 65%, transparent);
+  max-width: 54ch;
+}
+
+.aboutDescription strong {
+  color: var(--primary-color);
+  font-weight: var(--medium);
+  border-bottom: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+.aboutLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: var(--medium);
+  color: color-mix(in srgb, var(--color-white) 55%, transparent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-top: 0.25rem;
+
+  &:hover {
+    color: var(--neutral-color-100);
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .aboutCard {
+    grid-template-columns: 1fr;
+    grid-template-rows: 120px 1fr;
+    min-height: unset;
+  }
+
+  /* Gutter vira faixa horizontal no topo */
+  .aboutGutter {
+    border-radius: 0;
+  }
+
+  .aboutGutterLines {
+    inset: auto 0 0 0;
+    width: 100%;
+    height: 28px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 0;
+    border-right: none;
+    border-top: 1px solid color-mix(in srgb, var(--color-white) 8%, transparent);
+  }
+
+  .aboutLineNum {
+    padding-right: 0;
+    padding: 0 6px;
+    font-size: 0.6rem;
+    line-height: 28px;
+  }
+
+  .aboutContent {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+
+  .aboutTerminalStats {
+    display: none; 
+  }
+
+  .aboutHeading {
+    font-size: 1.875rem;
+  }
+}

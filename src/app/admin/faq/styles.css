@@ -1,0 +1,240 @@
+.adminFaqHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.adminFaqNewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: var(--primary-color);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: var(--medium);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+  }
+}
+
+.adminFaqToolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+
+.adminFaqEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 2rem;
+  background-color: var(--neutral-color-50);
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.adminFaqEmptyIcon {
+  font-size: 2.5rem;
+  color: var(--neutral-color-300);
+}
+
+.adminFaqEmptyText {
+  font-size: 0.9375rem;
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+}
+
+.adminFaqEmptyLink {
+  font-size: 0.875rem;
+  font-weight: var(--medium);
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Table ───────────────────────────────────────────────────── */
+
+.adminFaqTableWrapper {
+  background-color: var(--neutral-color-50);
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.adminFaqTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  thead {
+    background-color: var(--neutral-color-100);
+    border-bottom: 1px solid var(--neutral-color-200);
+
+    th {
+      padding: 0.75rem 1.25rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: var(--medium);
+      color: var(--neutral-color-900);
+      opacity: 0.5;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--neutral-color-200);
+    transition: background-color 0.15s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: var(--neutral-color-100);
+    }
+
+    td {
+      padding: 1rem 1.25rem;
+      vertical-align: middle;
+      color: var(--neutral-color-900);
+    }
+  }
+}
+
+.adminFaqPergunta {
+  font-weight: var(--medium);
+  max-width: 28rem;
+}
+
+/* Linha oculta */
+tr[data-oculto] td {
+  opacity: 0.5;
+}
+
+tr[data-oculto]:hover td {
+  opacity: 0.75;
+}
+
+.adminFaqOcultoIcon {
+  display: inline-flex;
+  margin-right: 0.375rem;
+  vertical-align: middle;
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+    color: var(--neutral-color-900);
+  }
+}
+
+.adminFaqLinkCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  color: var(--neutral-color-900);
+  opacity: 0.55;
+
+  .material-symbols-outlined {
+    font-size: 0.9375rem;
+  }
+}
+
+.adminFaqNoLinks {
+  color: var(--neutral-color-900);
+  opacity: 0.3;
+}
+
+.adminFaqStatus {
+  display: inline-block;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+  text-transform: capitalize;
+}
+
+.adminFaqStatus--publicado {
+  background-color: color-mix(in srgb, #38a169 15%, transparent);
+  color: #276749;
+}
+
+.adminFaqStatus--rascunho {
+  background-color: color-mix(in srgb, #d69e2e 15%, transparent);
+  color: #975a16;
+}
+
+.adminFaqData {
+  white-space: nowrap;
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+  font-size: 0.8125rem;
+}
+
+.adminFaqAcoes {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.adminFaqAcaoBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--neutral-color-900);
+  opacity: 0.45;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+    background-color: var(--neutral-color-200);
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+  }
+}
+
+.adminFaqAcaoBtn--danger:hover {
+  background-color: color-mix(in srgb, #e53e3e 12%, transparent);
+  color: #c53030;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

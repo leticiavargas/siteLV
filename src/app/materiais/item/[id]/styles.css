@@ -1,0 +1,199 @@
+.materialDetalhePage {
+  background-color: var(--neutral-color-100);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+
+.materialDetalheHero {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-white) 14%, transparent) 0%,
+      transparent 55%,
+      color-mix(in srgb, var(--secondary-color) 25%, transparent) 100%
+    ),
+    var(--primary-color);
+  padding: 3rem 5rem;
+}
+
+.materialDetalheHeroInner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+}
+
+.materialDetalheBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--color-white) 65%, transparent);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--neutral-color-100);
+    }
+  }
+
+  span {
+    opacity: 0.5;
+  }
+}
+
+.materialDetalheHeroContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.materialDetalheIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  background-color: color-mix(in srgb, var(--color-white) 15%, transparent);
+  color: var(--neutral-color-100);
+  flex-shrink: 0;
+  font-size: 1.75rem;
+}
+
+.materialDetalheMeta {
+  margin-bottom: 0.5rem;
+}
+
+.materialDetalheTitulo {
+  font-size: 2.25rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--neutral-color-100);
+  line-height: 1.15;
+}
+
+.materialDetalheDescricao {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--color-white) 80%, transparent);
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+/* ── Body ───────────────────────────────────────────────────────────────── */
+
+.materialDetalheBody {
+  padding: 3rem 5rem;
+  max-width: 800px;
+}
+
+/* Material externo */
+
+.materialDetalheExterno {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 1rem;
+  background-color: var(--neutral-color-50);
+}
+
+.materialDetalheExternoTexto {
+  font-size: 1rem;
+  color: var(--neutral-color-900);
+  line-height: 1.65;
+  opacity: 0.75;
+}
+
+.materialDetalheExternoBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 2rem;
+  background-color: var(--primary-color);
+  color: var(--neutral-color-100);
+  font-size: 0.9375rem;
+  font-weight: var(--bold);
+  font-family: var(--font-inter);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+/* Conteúdo inline (rich text) */
+
+.materialDetalheConteudo {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--neutral-color-900);
+
+  h2 { font-size: 1.5rem; font-weight: var(--bold); margin: 2rem 0 0.75rem; }
+  h3 { font-size: 1.25rem; font-weight: var(--bold); margin: 1.5rem 0 0.5rem; }
+  p { margin-bottom: 1rem; }
+  ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+  li { margin-bottom: 0.375rem; }
+  strong { font-weight: var(--bold); }
+  em { font-style: italic; }
+  blockquote {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: color-mix(in srgb, var(--neutral-color-900) 70%, transparent);
+  }
+  img { max-width: 100%; border-radius: 0.5rem; }
+}
+
+.materialDetalheFonte {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--neutral-color-200);
+  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--neutral-color-900) 55%, transparent);
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+  }
+
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    word-break: break-all;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.materialDetalheVazio {
+  font-size: 1rem;
+  color: var(--neutral-color-900);
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .materialDetalheHero {
+    padding: 2rem 1.25rem;
+  }
+
+  .materialDetalheTitulo {
+    font-size: 1.75rem;
+  }
+
+  .materialDetalheBody {
+    padding: 2rem 1.25rem;
+  }
+}

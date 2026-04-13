@@ -1,0 +1,21 @@
+.tagContainer {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 2rem;
+  padding: 0.25rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: var(--medium);
+  white-space: nowrap;
+}
+
+.tagContainer--filled {
+  background-color: var(--primary-color);
+  color: var(--neutral-color-100);
+  border: 2px solid transparent;
+}
+
+.tagContainer--outline {
+  background-color: transparent;
+  color: var(--neutral-color-900);
+  border: 2px solid var(--neutral-color-300);
+}

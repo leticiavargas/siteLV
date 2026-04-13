@@ -1,0 +1,91 @@
+.articleHero {
+  width: 100%;
+  padding: 3.5rem 5rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-white) 14%, transparent) 0%,
+      transparent 55%,
+      color-mix(in srgb, var(--secondary-color) 25%, transparent) 100%
+    ),
+    var(--primary-color);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.articleHeroInner {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.articleHeroTags {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+/* Tags ficam com visual claro sobre o gradiente */
+.articleHeroTags .tagContainer--filled {
+  background-color: color-mix(in srgb, var(--color-white) 20%, transparent);
+  border-color: color-mix(in srgb, var(--color-white) 35%, transparent);
+  color: var(--neutral-color-100);
+}
+
+.articleHeroTitle {
+  font-size: 2.5rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--neutral-color-100);
+  line-height: 1.2;
+}
+
+.articleHeroLead {
+  font-size: 1rem;
+  color: color-mix(in srgb, var(--neutral-color-100) 85%, transparent);
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+.articleHeroDivider {
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 25%, transparent);
+  margin: 0.25rem 0;
+}
+
+.articleHeroAuthor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-style: normal;
+}
+
+.authorPhoto {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--color-white) 25%, transparent);
+  border: 2px solid color-mix(in srgb, var(--color-white) 40%, transparent);
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.authorName {
+  font-size: 0.875rem;
+  font-weight: var(--bold);
+  color: var(--neutral-color-100);
+}
+
+.authorMeta {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--neutral-color-100) 70%, transparent);
+}

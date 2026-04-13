@@ -1,0 +1,130 @@
+/* ── Upload zone (sem imagem) ────────────────────────────────── */
+
+.imageUploadZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 2rem 1.5rem;
+  border: 2px dashed var(--neutral-color-300);
+  border-radius: 0.75rem;
+  background-color: var(--neutral-color-100);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  text-align: center;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--primary-color);
+    background-color: color-mix(in srgb, var(--primary-color) 4%, transparent);
+    outline: none;
+  }
+}
+
+.imageUploadZone--loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.imageUploadZoneIcon {
+  font-size: 2rem;
+  color: var(--neutral-color-300);
+
+  .imageUploadZone:hover & {
+    color: var(--primary-color);
+  }
+}
+
+.imageUploadZoneText {
+  font-size: 0.875rem;
+  font-weight: var(--medium);
+  color: var(--neutral-color-900);
+}
+
+.imageUploadZoneHint {
+  font-size: 0.75rem;
+  color: var(--neutral-color-900);
+  opacity: 0.45;
+}
+
+/* ── Preview (com imagem) ────────────────────────────────────── */
+
+.imageUploadPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.imageUploadPreviewImg {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 0.625rem;
+  border: 1px solid var(--neutral-color-200);
+}
+
+.imageUploadPreviewActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ── Botões ──────────────────────────────────────────────────── */
+
+.imageUploadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 0.625rem;
+  background-color: var(--neutral-color-50);
+  color: var(--neutral-color-900);
+  font-size: 0.8125rem;
+  font-weight: var(--medium);
+  font-family: var(--font-inter);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: var(--neutral-color-100);
+    border-color: var(--neutral-color-300);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+  }
+}
+
+.imageUploadBtn--danger {
+  color: #c53030;
+  border-color: color-mix(in srgb, #e53e3e 30%, transparent);
+
+  &:hover:not(:disabled) {
+    background-color: color-mix(in srgb, #e53e3e 8%, transparent);
+    border-color: color-mix(in srgb, #e53e3e 50%, transparent);
+  }
+}
+
+/* ── Erro ────────────────────────────────────────────────────── */
+
+.imageUploadErro {
+  font-size: 0.8125rem;
+  color: #c53030;
+  margin: 0;
+}
+
+/* ── Input oculto ────────────────────────────────────────────── */
+
+.imageUploadHiddenInput {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}

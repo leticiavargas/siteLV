@@ -3,26 +3,27 @@ import './styles.css';
 
 import logo from '@images/logo.webp';
 import { Icon } from '@components';
+import { NavMobile } from './NavMobile';
 
-const Header = () => { 
+const Header = () => {
   return (
     <header className='headerContainer'>
       <Image src={logo} alt="Marca Letícia Vargas" width={118} />
-      <nav>
+      <nav className='headerNav'>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Artigos</a></li>
-          <li><a href="#">Projetos</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li><a href="#">Contato</a></li>
+          <li><a href="/">Início</a></li>
+          <li><a href="/artigos">Artigos</a></li>
+          <li><a href="/projetos">Projetos</a></li>
+          <li><a href="/materiais">Materiais</a></li>
+          <li><a href="/sobre">Sobre</a></li>
         </ul>
       </nav>
-      <section className='social'>
-        <Icon iconName= "instagram"/>
-        <Icon iconName= "github"/>
-        <Icon iconName= "linkedin"/>
-        <Icon iconName= "youtube"/>
-      </section>
+      <ul className='social headerSocial'>
+        <li><Icon iconName="github" /></li>
+        <li><Icon iconName="instagram" /></li>
+        <li><Icon iconName="linkedin" /></li>
+      </ul>
+      <NavMobile />
     </header>
   );
 };

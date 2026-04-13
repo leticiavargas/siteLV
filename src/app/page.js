@@ -1,9 +1,91 @@
-import { Header } from "./components";
+import {
+  Header,
+  Hero,
+  AboutSection,
+  ArticleSection,
+  ProjectsSection,
+  EventsSection,
+  FAQSection,
+  Footer,
+} from "./components";
+import { PageAnimations } from './components/PageAnimations';
+import { articlesApi, faqApi, eventsApi, projectsApi } from '@/lib/api';
 
-export default function Home() {
+function formatDate(date, endDate) {
+  if (!date) return '';
+  const opcoes = { day: '2-digit', month: 'short', year: 'numeric' };
+  const inicio = new Date(`${date}T12:00:00`).toLocaleDateString('pt-BR', opcoes);
+  if (!endDate) return inicio;
+  const fim = new Date(`${endDate}T12:00:00`).toLocaleDateString('pt-BR', opcoes);
+  return `${inicio} – ${fim}`;
+}
+
+export default async function Home() {
+  const [articlesData, faqData, eventsData, projectsData] = await Promise.all([
+    articlesApi.list({ perPage: 8, status: 'published', visible: true }),
+    faqApi.list({ perPage: 3, status: 'published', visible: true }),
+    eventsApi.list({ future: true, status: 'published', visible: true, perPage: 10 }),
+    projectsApi.list({ status: 'published', visible: true, perPage: 3 }),
+  ]);
+
+  const articles = articlesData.items.map(a => ({
+    title: a.title,
+    description: a.excerpt,
+    tags: a.tags ?? [],
+    href: `/artigos/${a.id}`,
+    iconName: a.iconName,
+    publishedAt: a.publishedAt ?? null,
+  }));
+
+  const faqItems = faqData.items.map(f => ({
+    question: f.question,
+    answer: f.answer,
+  }));
+
+  const events = eventsData.items.map(e => ({
+    title: e.title,
+    date: formatDate(e.date, e.endDate),
+    image: e.imageUrl,
+    href: e.href,
+    format: e.format,
+    attending: e.attending,
+  }));
+
+  const projects = projectsData.items.map(p => ({
+    title: p.title,
+    description: p.description,
+    tags: p.tags ?? [],
+    liveHref: p.liveHref,
+    repoHref: p.repoHref,
+    imageUrl: p.imageUrl,
+  }));
+
   return (
-    <div>
+    <>
       <Header />
-    </div>
+      <main>
+        <PageAnimations />
+        <Hero />
+        <ArticleSection
+          articles={articles}
+          moreHref="/artigos"
+          title="Dos Conceitos à Prática"
+          subtitle="Conteúdo autoral e curado sobre arquitetura, desenvolvimento full stack e carreira."
+        />
+        <div className="animate-on-scroll">
+          <ProjectsSection projects={projects} />
+        </div>
+        <div className="animate-on-scroll">
+          <EventsSection events={events} />
+        </div>
+        <div className="animate-on-scroll">
+          <FAQSection items={faqItems} />
+        </div>
+        <div className="animate-on-scroll">
+          <AboutSection />
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

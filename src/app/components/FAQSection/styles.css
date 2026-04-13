@@ -1,0 +1,48 @@
+.faqSection {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  padding: 4rem 5rem;
+  border: 2px solid var(--neutral-color-300);
+  margin: 3rem 5rem;
+  border-radius: 1rem;
+  background-color: var(--neutral-color-50);
+}
+
+.faqHeading {
+  flex-shrink: 0;
+  width: 200px;
+
+  h2 {
+    font-size: 3.5rem;
+    font-weight: var(--bold);
+    font-family: var(--font-fivo-sans);
+    color: var(--secondary-color);
+    line-height: 1;
+  }
+
+  p {
+    font-size: 0.875rem;
+    color: var(--neutral-color-900);
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 2px solid var(--secondary-color);
+  }
+}
+
+.faqContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqMore {
+  display: flex;
+  justify-content: center;
+}

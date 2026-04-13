@@ -1,17 +1,22 @@
+.navMobileWrapper {
+  display: none;
+}
+
 .headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   padding: 1.25rem 5rem;
 
-  background-color: var(--neutral-color-200);
+  background-color: var(--neutral-color-50);
 
   > nav {
     ul {
       display: flex;
       gap: 3rem;
-      width: fit-content;
+      list-style: none;
 
       li {
           ::before,
@@ -31,14 +36,14 @@
             border-top: 2px solid transparent;
             border-right: 2px solid transparent;
           }
-          
+
           ::before {
             left: 0;
             bottom: 0;
             border-bottom: 2px solid transparent;
             border-left: 2px solid transparent;
           }
-          
+
           :hover::before,
           :hover::after {
             width: 10px;
@@ -60,47 +65,72 @@
   .social {
     display: flex;
     gap: 0.5rem;
+    list-style: none;
   }
 }
 
-.link-71 {
-  color: #ffffff;
-  font-size: 20px;
-  text-decoration: none;
-  padding: 10px 20px;
-  margin: 0 5px;
-  position: relative;
-  display: inline-block;
-}
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 1rem 1.25rem;
+  }
 
-.link-71::before,
-.link-71::after {
-  content: "";
-  position: absolute;
-  display: block;
-  border: 0px solid transparent;
-  width: 0%;
-  height: 0%;
-  transition: all 0.3s ease;
-}
+  .headerNav,
+  .headerSocial {
+    display: none;
+  }
 
-.link-71::after {
-  top: 0;
-  left: 0;
-  border-top: 2px solid transparent;
-  border-left: 2px solid transparent;
-}
+  .navMobileWrapper {
+    display: block;
+  }
 
-.link-71::before {
-  right: 0;
-  bottom: 0;
-  border-bottom: 2px solid transparent;
-  border-right: 2px solid transparent;
-}
+  .navHamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--neutral-color-900);
+    cursor: pointer;
+    padding: 0.25rem;
 
-.link-71:hover::before,
-.link-71:hover::after {
-  width: 10px;
-  height: 10px;
-  border-color: #fff;
+    .material-symbols-outlined {
+      font-size: 1.75rem;
+    }
+  }
+
+  .navMobileOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+  }
+
+  .navMobileMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--neutral-color-50);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-black) 12%, transparent);
+    z-index: 100;
+    padding: 1rem 1.25rem 1.5rem;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      display: block;
+      padding: 0.875rem 0.5rem;
+      font-size: 1rem;
+      color: var(--neutral-color-900);
+      border-bottom: 1px solid var(--neutral-color-200);
+      text-decoration: none;
+    }
+
+    li:last-child a {
+      border-bottom: none;
+    }
+  }
 }

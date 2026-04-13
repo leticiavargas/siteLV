@@ -1,0 +1,48 @@
+.materialAreaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 3rem 5rem;
+  border-bottom: 1px solid var(--neutral-color-200);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.materialAreaHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.materialAreaTitle {
+  font-size: 1.5rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--secondary-color);
+}
+
+.materialAreaDescription {
+  font-size: 0.875rem;
+  color: var(--neutral-color-900);
+  opacity: 0.65;
+  line-height: 1.5;
+}
+
+.materialAreaList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .materialAreaSection {
+    padding: 2rem 1.25rem;
+  }
+
+  .materialAreaList {
+    grid-template-columns: 1fr;
+  }
+}

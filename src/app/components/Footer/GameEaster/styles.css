@@ -1,0 +1,70 @@
+.gameEaster {
+  position: relative;
+  width: 100%;
+}
+
+.gameEasterCanvas {
+  display: block;
+  width: 100%;
+  height: 200px;
+  cursor: pointer;
+}
+
+.gameEasterIdle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.gameEasterOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(22, 38, 80, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.gameEasterBtn {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: var(--primary-color);
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: var(--primary-color);
+    color: var(--color-white);
+  }
+}
+
+.gameEasterHint {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.gameEasterMsg {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.gameEasterScore {
+  font-family: monospace;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  color: var(--color-white);
+}

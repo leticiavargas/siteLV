@@ -1,0 +1,170 @@
+.richEditor {
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: var(--color-white);
+  transition: border-color 0.15s ease;
+
+  &:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 15%, transparent);
+  }
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────── */
+
+.richEditorToolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--neutral-color-100);
+  border-bottom: 1px solid var(--neutral-color-200);
+  flex-wrap: wrap;
+}
+
+.richEditorBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--neutral-color-900);
+  font-size: 0.8125rem;
+  font-family: var(--font-inter);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--neutral-color-200);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+.richEditorBtn--active {
+  background-color: color-mix(in srgb, var(--primary-color) 15%, transparent);
+  color: var(--primary-color);
+}
+
+.richEditorDivider {
+  width: 1px;
+  height: 1.25rem;
+  background-color: var(--neutral-color-200);
+  margin: 0 0.25rem;
+  flex-shrink: 0;
+}
+
+/* ── Upload error ────────────────────────────────────────────── */
+
+.richEditorUploadError {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  background-color: color-mix(in srgb, #e53e3e 8%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, #e53e3e 20%, transparent);
+  color: #c53030;
+  font-size: 0.8125rem;
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+}
+
+.richEditorFileInput {
+  display: none;
+}
+
+/* ── Editor content ──────────────────────────────────────────── */
+
+.richEditorContent {
+  padding: 1rem 1.25rem;
+  min-height: 16rem;
+  max-height: 36rem;
+  overflow-y: auto;
+
+  .ProseMirror {
+    outline: none;
+    min-height: 14rem;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--neutral-color-900);
+    font-family: var(--font-inter);
+
+    > * + * {
+      margin-top: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: var(--bold);
+      font-family: var(--font-fivo-sans);
+      color: var(--secondary-color);
+      margin-top: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.0625rem;
+      font-weight: var(--bold);
+      color: var(--secondary-color);
+      margin-top: 1.25rem;
+    }
+
+    ul,
+    ol {
+      padding-left: 1.25rem;
+    }
+
+    blockquote {
+      border-left: 3px solid var(--primary-color);
+      padding: 0.375rem 0.875rem;
+      color: color-mix(in srgb, var(--neutral-color-900) 65%, transparent);
+      font-style: italic;
+    }
+
+    strong {
+      font-weight: var(--bold);
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    s {
+      text-decoration: line-through;
+    }
+
+    p.is-editor-empty:first-child::before {
+      color: var(--neutral-color-300);
+      content: attr(data-placeholder);
+      float: left;
+      height: 0;
+      pointer-events: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      display: block;
+      margin: 0.5rem 0;
+
+      &.ProseMirror-selectednode {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+.adminPageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.adminPageTitle {
+  font-size: 1.75rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--secondary-color);
+}
+
+.adminPageSubtitle {
+  font-size: 0.875rem;
+  color: var(--neutral-color-900);
+  opacity: 0.55;
+}
+
+/* Stats */
+
+.adminStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.adminStatCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--neutral-color-50);
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 1rem;
+}
+
+.adminStatIcon {
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  opacity: 0.8;
+}
+
+.adminStatInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.adminStatValue {
+  font-size: 1.5rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--secondary-color);
+  line-height: 1;
+}
+
+.adminStatLabel {
+  font-size: 0.75rem;
+  color: var(--neutral-color-900);
+  opacity: 0.55;
+}
+
+/* Quick actions */
+
+.adminQuickSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.adminSectionTitle {
+  font-size: 1rem;
+  font-weight: var(--bold);
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.adminQuickList {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.adminQuickLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: var(--primary-color);
+  color: var(--neutral-color-100);
+  font-size: 0.875rem;
+  font-weight: var(--medium);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+  }
+}

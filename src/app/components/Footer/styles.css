@@ -1,0 +1,196 @@
+.footerContainer {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 3.5rem 5rem 2rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-white) 8%, transparent) 0%,
+      transparent 50%,
+      color-mix(in srgb, var(--primary-color) 20%, transparent) 100%
+    ),
+    var(--secondary-color);
+}
+
+/* ── Blobs ───────────────────────────────────────────────────────────────── */
+
+.footerBlob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(72px);
+}
+
+.footerBlob--1 {
+  width: 380px;
+  height: 380px;
+  bottom: -140px;
+  right: -80px;
+  background: color-mix(in srgb, var(--primary-color) 55%, var(--secondary-color));
+  opacity: 0.35;
+  animation: footerBlobDrift 11s ease-in-out infinite;
+}
+
+.footerBlob--2 {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  right: 20%;
+  background: var(--primary-color);
+  opacity: 0.25;
+  animation: footerBlobDrift 9s ease-in-out infinite reverse;
+  animation-delay: -3s;
+}
+
+.footerBlob--3 {
+  width: 180px;
+  height: 180px;
+  bottom: 10%;
+  right: 35%;
+  background: color-mix(in srgb, var(--primary-color) 70%, var(--color-white));
+  opacity: 0.2;
+  animation: footerBlobDrift 7s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+@keyframes footerBlobDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%       { transform: translate(-14px, 20px) scale(1.05); }
+  50%       { transform: translate(10px, -14px) scale(0.97); }
+  75%       { transform: translate(-8px, 10px) scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerBlob { animation: none; }
+}
+
+/* ── Top ─────────────────────────────────────────────────────────────────── */
+
+.footerTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.footerName {
+  color: var(--neutral-color-100);
+  font-size: 1.125rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  letter-spacing: 0.01em;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────────────────── */
+
+.footerNav {
+  
+}
+
+.footerNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.footerNavLink {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--color-white) 55%, transparent);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--neutral-color-100);
+  }
+}
+
+/* ── Social ──────────────────────────────────────────────────────────────── */
+
+.footerSocial {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  list-style: none;
+  flex-shrink: 0;
+  margin-top: 3rem;
+}
+
+.footerSocialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: color-mix(in srgb, var(--color-white) 45%, transparent);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  img {
+    filter: invert(1) brightness(0.65);
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    color: var(--neutral-color-100);
+
+    img {
+      filter: invert(1) brightness(1);
+    }
+  }
+}
+
+/* ── Game ────────────────────────────────────────────────────────────────── */
+
+.footerGame {
+  position: relative;
+  flex: 1;
+  z-index: 1;
+}
+
+/* ── Bottom ──────────────────────────────────────────────────────────────── */
+
+.footerBottom {
+  position: relative;
+  z-index: 1;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
+}
+
+.footerCredits {
+  font-size: 0.75rem;
+  font-style: normal;
+  color: color-mix(in srgb, var(--color-white) 30%, transparent);
+  letter-spacing: 0.03em;
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .footerContainer {
+    padding: 2.5rem 1.25rem 1.5rem;
+  }
+
+  .footerTop {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footerBlob--2 {
+    display: none;
+  }
+}

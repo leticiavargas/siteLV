@@ -1,0 +1,44 @@
+.adminSearchBar {
+  position: relative;
+  flex: 1;
+  max-width: 22rem;
+}
+
+.adminSearchIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  color: var(--neutral-color-900);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.adminSearchInput {
+  width: 100%;
+  padding: 0.5625rem 0.875rem 0.5625rem 2.375rem;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-family: var(--font-inter);
+  color: var(--neutral-color-900);
+  background-color: var(--neutral-color-50);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 15%, transparent);
+    background-color: var(--color-white);
+  }
+
+  &::placeholder {
+    color: var(--neutral-color-300);
+  }
+
+  /* remove default X do browser */
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}

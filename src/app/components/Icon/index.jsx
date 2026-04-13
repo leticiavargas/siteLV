@@ -13,12 +13,12 @@ const SOCIAL = {
 
 const Icon = ({ className = '', iconName, ...rest }) => {
 
-  if (SOCIAL.hasOwnProperty(iconName)) { 
+  if (SOCIAL.hasOwnProperty(iconName)) {
     return (
-      <Image 
-        className={`icon ${className}`} 
-        src={SOCIAL[iconName]} 
-        alt="Github" 
+      <Image
+        className={`icon ${className}`}
+        src={SOCIAL[iconName]}
+        alt={iconName}
         {...rest}
       />
     );

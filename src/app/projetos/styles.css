@@ -1,0 +1,21 @@
+.projetosSection {
+  padding: 4rem 5rem;
+  background-color: var(--neutral-color-100);
+}
+
+.projetosGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .projetosSection {
+    padding: 2rem 1.25rem;
+  }
+
+  .projetosGrid {
+    grid-template-columns: 1fr;
+  }
+}

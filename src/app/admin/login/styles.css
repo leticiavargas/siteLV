@@ -1,0 +1,85 @@
+.loginPage {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-white) 14%, transparent) 0%,
+      transparent 55%,
+      color-mix(in srgb, var(--secondary-color) 25%, transparent) 100%
+    ),
+    var(--primary-color);
+}
+
+.loginCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--neutral-color-50);
+  border-radius: 1.5rem;
+  padding: 3rem 3.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px color-mix(in srgb, var(--color-black) 20%, transparent);
+}
+
+.loginBrand {
+  display: flex;
+  justify-content: center;
+}
+
+.loginHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.loginTitle {
+  font-size: 1.5rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--secondary-color);
+}
+
+.loginSubtitle {
+  font-size: 0.875rem;
+  color: var(--neutral-color-900);
+  opacity: 0.6;
+}
+
+.loginGoogleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--neutral-color-200);
+  background-color: var(--neutral-color-50);
+  color: var(--neutral-color-900);
+  font-size: 0.9375rem;
+  font-weight: var(--medium);
+  font-family: var(--font-inter);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: var(--neutral-color-300);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--color-black) 8%, transparent);
+  }
+}
+
+.loginGoogleIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}

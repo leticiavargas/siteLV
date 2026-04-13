@@ -1,0 +1,234 @@
+.materialItemForm {
+  display: grid;
+  grid-template-columns: 1fr 272px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.materialItemFormError {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: color-mix(in srgb, #e53e3e 10%, transparent);
+  border: 1px solid color-mix(in srgb, #e53e3e 25%, transparent);
+  border-radius: 0.75rem;
+  color: #c53030;
+  font-size: 0.875rem;
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+}
+
+.materialItemFormCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background-color: var(--neutral-color-50);
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 1rem;
+}
+
+.materialItemFormSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.materialItemFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.materialItemFormLabel {
+  font-size: 0.8125rem;
+  font-weight: var(--medium);
+  color: var(--neutral-color-900);
+}
+
+.materialItemFormRequired {
+  color: var(--primary-color);
+  margin-left: 0.125rem;
+}
+
+.materialItemFormHint {
+  font-size: 0.75rem;
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+}
+
+.materialItemFormHintLink {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Inputs ──────────────────────────────────────────────────── */
+
+.materialItemFormInput,
+.materialItemFormTextarea,
+.materialItemFormSelect {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: 0.625rem;
+  font-size: 0.9375rem;
+  font-family: var(--font-inter);
+  color: var(--neutral-color-900);
+  background-color: var(--color-white);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 15%, transparent);
+  }
+
+  &::placeholder {
+    color: var(--neutral-color-300);
+  }
+}
+
+.materialItemFormTextarea {
+  resize: vertical;
+  min-height: 5rem;
+  line-height: 1.6;
+}
+
+.materialItemFormSelect {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23313131' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+/* ── Icon preview ────────────────────────────────────────────── */
+
+.materialItemFormIconWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.materialItemFormIconPreview {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* ── Actions ─────────────────────────────────────────────────── */
+
+.materialItemFormActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.materialItemFormSubmit {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: var(--primary-color);
+  color: var(--color-white);
+  font-size: 0.9375rem;
+  font-weight: var(--medium);
+  font-family: var(--font-inter);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.materialItemFormCancel {
+  display: block;
+  text-align: center;
+  padding: 0.625rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* ── Toggle ──────────────────────────────────────────────────── */
+
+.materialItemFormToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  user-select: none;
+
+  input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.materialItemFormToggleTrack {
+  position: relative;
+  width: 2.5rem;
+  height: 1.375rem;
+  background-color: var(--neutral-color-300);
+  border-radius: 2rem;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.materialItemFormToggle input:checked + .materialItemFormToggleTrack {
+  background-color: var(--primary-color);
+}
+
+.materialItemFormToggleThumb {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--color-black) 20%, transparent);
+  transition: transform 0.2s ease;
+}
+
+.materialItemFormToggle input:checked + .materialItemFormToggleTrack .materialItemFormToggleThumb {
+  transform: translateX(1.125rem);
+}
+
+.materialItemFormToggleLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--neutral-color-900);
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+    opacity: 0.6;
+  }
+}
