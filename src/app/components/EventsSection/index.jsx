@@ -1,64 +1,78 @@
-'use client';
-
-import { useState } from 'react';
 import './styles.css';
-import { EventCard } from '../EventCard';
 
-const VISIBLE = 3;
-const GAP_REM = 1.5;
+const MONTHS = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+
+const FORMAT_LABEL = {
+  'in-person': 'Presencial',
+  'hybrid': 'Híbrido',
+  'online': 'Online',
+};
+
+function formatAgendaDate(dateStr) {
+  if (!dateStr) return '';
+  const [, month, day] = dateStr.split('-');
+  return `${parseInt(day)} ${MONTHS[parseInt(month) - 1]}`;
+}
+
+function buildSubtitle(format, location) {
+  const parts = [FORMAT_LABEL[format], location].filter(Boolean);
+  return parts.join(' · ');
+}
 
 const EventsSection = ({ events = [] }) => {
-  const [index, setIndex] = useState(0);
-  const maxIndex = Math.max(0, events.length - VISIBLE);
-
-  const prev = () => setIndex((i) => Math.max(0, i - 1));
-  const next = () => setIndex((i) => Math.min(maxIndex, i + 1));
+  if (!events.length) return null;
 
   return (
-    <section className='eventsSection'>
-      <div className='eventsSectionHeader'>
-        <h2 className='eventsTitle'>Conexões na Comunidade Tech</h2>
-        <a href="/eventos" className='eventsSeeAll'>Ver todos os eventos</a>
+    <section className="eventsSection">
+      <header className="eventsSectionHeader">
+        <p className="eventsSectionLabel">AGENDA TECH</p>
+        <a href="/eventos" className="eventsSeeAll">Ver lista completa ↗</a>
+      </header>
+
+      <div className="eventsRhythmBars" aria-hidden="true">
+        <span className="eventsBar eventsBar--accent" />
+        <span className="eventsPulse eventsPulse--accent" />
+        <span className="eventsBar eventsBar--navy-dim" />
+        <span className="eventsPulse eventsPulse--navy" />
+        <span className="eventsBar eventsBar--navy" />
       </div>
 
-      <div className='eventsCarousel'>
-        <button
-          className='carouselBtn'
-          onClick={prev}
-          disabled={index === 0}
-          aria-label="Evento anterior"
-        >
-          &#8249;
-        </button>
+      <div className="eventsAgenda">
+        <p className="eventsAgendaTitle">Próximos eventos</p>
+        <ul className="eventsAgendaList">
+          {events.map((event, i) => {
+            const rowVariant = i % 2 === 0 ? 'accent' : 'navy';
+            const subtitle = buildSubtitle(event.format, event.location);
 
-        <div className='eventsViewport'>
-          <ul
-            className='eventsTrack'
-            style={{ '--slide-index': index, '--gap': `${GAP_REM}rem` }}
-          >
-            {events.map((event, i) => (
-              <li key={i} className='eventsSlide'>
-                <EventCard
-                  image={event.image}
-                  title={event.title}
-                  date={event.date}
-                  href={event.href}
-                  formato={event.formato}
-                  vou={event.vou}
-                />
+            return (
+              <li key={event.href ?? i} className={`eventsAgendaRow eventsAgendaRow--${rowVariant}`}>
+                <div className="eventsAgendaLeft">
+                  <span className={`eventsDateBadge${event.attending ? ' eventsDateBadge--attending' : ''}`}>
+                    {formatAgendaDate(event.rawDate)}
+                  </span>
+                  <div className="eventsAgendaInfo">
+                    <div className="eventsAgendaNameRow">
+                      <span className="eventsAgendaName">{event.title}</span>
+                      {event.attending && (
+                        <span className="eventsAttendingBadge">vou</span>
+                      )}
+                    </div>
+                    {subtitle && <span className="eventsAgendaSubtitle">{subtitle}</span>}
+                  </div>
+                </div>
+                {event.href && (
+                  <a
+                    href={event.href}
+                    className="eventsAgendaLink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Acessar ${event.title}`}
+                  >↗</a>
+                )}
               </li>
-            ))}
-          </ul>
-        </div>
-
-        <button
-          className='carouselBtn'
-          onClick={next}
-          disabled={index >= maxIndex}
-          aria-label="Próximo evento"
-        >
-          &#8250;
-        </button>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

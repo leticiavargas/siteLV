@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Inter } from 'next/font/google'
+import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import Script from 'next/script';
 import { ConsoleEaster } from './components/ConsoleEaster';
 import "./globals.css";
@@ -28,6 +28,13 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+  variable: '--font-ibm-plex-mono',
+})
+
 export const metadata = {
   title: "Letícia Vargas",
   description: "Pensar em uma descrição boa ... ",
@@ -51,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         )}
       </head>
-      <body className={`${fivoSans.variable} ${inter.variable}`}>
+      <body className={`${fivoSans.variable} ${inter.variable} ${ibmPlexMono.variable}`}>
         {GTM_ID && (
           <noscript>
             <iframe

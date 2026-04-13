@@ -15,6 +15,7 @@ export { FilterBar } from './FilterBar';
 export { Footer } from './Footer';
 export { Header } from './Header';
 export { Hero } from './Hero';
+export { HomeArticlesSection } from './HomeArticlesSection';
 export { Icon } from './Icon';
 export { MaterialAreaSection } from './MaterialAreaSection';
 export { MaterialCard } from './MaterialCard';

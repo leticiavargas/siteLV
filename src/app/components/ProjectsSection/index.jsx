@@ -1,33 +1,40 @@
-import './styles.css';
+import Link from 'next/link';
 import { ProjectCard } from '../ProjectCard';
-import { Button } from '../Button';
+import './styles.css';
+
+const ROTATIONS = [-1.2, 1.1, -0.9];
 
 const ProjectsSection = ({ projects = [] }) => {
   if (projects.length === 0) return null;
 
   return (
-    <section className='projectsSection'>
-      <div className='projectsSectionHeader'>
-        <div>
-          <h2 className='projectsSectionTitle'>Crafted Code: Laboratório técnico</h2>
-          <p className='projectsSectionSubtitle'>Soluções autorais documentadas (ou talvez não) do código à arquitetura.</p>
+    <section className="projectsSection">
+      <div className="projectsSectionHeader">
+        <div className="projectsSectionHeaderLeft">
+          <h2 className="projectsSectionTitle">Crafted Code: Laboratório Técnico</h2>
+          <p className="projectsSectionSubtitle">Soluções autorais documentadas (ou talvez não) do código à arquitetura.</p>
         </div>
-        <Button label="Explorar todos os projetos" variant="outline" href="/projetos" />
+        <Link href="/projetos" className="projectsSectionCta">
+          explorar todos projetos
+        </Link>
       </div>
-      <ul className='projectsGrid'>
+      <ul className="projectsGrid">
         {projects.map((project, index) => (
           <li
             key={index}
-            className='animate-on-scroll'
-            style={{ transitionDelay: `${index * 80}ms` }}
+            className="animate-on-scroll"
+            style={{
+              transform: `rotate(${ROTATIONS[index % ROTATIONS.length]}deg)`,
+              transitionDelay: `${index * 80}ms`,
+            }}
           >
             <ProjectCard
               title={project.title}
               description={project.description}
               tags={project.tags}
-              liveHref={project.liveHref}
-              repoHref={project.repoHref}
-              imageSrc={project.imageSrc}
+              imageUrl={project.imageUrl}
+              href={project.liveHref || project.repoHref || null}
+              variant={index}
             />
           </li>
         ))}

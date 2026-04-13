@@ -2,6 +2,37 @@
   display: none;
 }
 
+.headerContainer.headerContainer--dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: transparent;
+
+  > nav ul li a {
+    color: color-mix(in srgb, var(--color-white) 85%, transparent);
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+
+  .social a .icon {
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .navHamburger {
+    color: var(--color-white);
+  }
+}
+
 .headerContainer {
   display: flex;
   justify-content: space-between;

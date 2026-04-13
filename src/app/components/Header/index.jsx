@@ -2,13 +2,15 @@ import Image from 'next/image';
 import './styles.css';
 
 import logo from '@images/logo.webp';
+import logoInvert from '@images/logo-invert.webp';
 import { Icon } from '@components';
 import { NavMobile } from './NavMobile';
 
-const Header = () => {
+const Header = ({ variant }) => {
+  const isDark = variant === 'dark';
   return (
-    <header className='headerContainer'>
-      <Image src={logo} alt="Marca Letícia Vargas" width={118} />
+    <header className={`headerContainer${isDark ? ' headerContainer--dark' : ''}`}>
+      <Image src={isDark ? logoInvert : logo} alt="Marca Letícia Vargas" width={118} />
       <nav className='headerNav'>
         <ul>
           <li><a href="/">Início</a></li>

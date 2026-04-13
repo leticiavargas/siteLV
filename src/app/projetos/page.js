@@ -20,15 +20,15 @@ export default async function Projetos() {
 
         <section className='projetosSection'>
           <ul className='projetosGrid'>
-            {projects.map(project => (
+            {projects.map((project, index) => (
               <li key={project.id}>
                 <ProjectCard
                   title={project.title}
                   description={project.description}
                   tags={project.tags ?? []}
-                  liveHref={project.liveHref}
-                  repoHref={project.repoHref}
-                  imageSrc={project.imageUrl}
+                  imageUrl={project.imageUrl}
+                  href={project.liveHref || project.repoHref || null}
+                  variant={index}
                 />
               </li>
             ))}

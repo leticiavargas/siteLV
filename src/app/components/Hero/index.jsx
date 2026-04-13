@@ -1,6 +1,5 @@
 import './styles.css';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import { HeroTyped } from './HeroTyped';
 
 const Hero = () => {
@@ -10,39 +9,67 @@ const Hero = () => {
       <span className='heroBlob heroBlob--2' aria-hidden="true" />
       <span className='heroBlob heroBlob--3' aria-hidden="true" />
 
-      <article className='heroContent'>
-        <p className='heroTagline'><HeroTyped /></p>
-        <h1>Engenharia de software com alma de artesã.</h1>
-        <p className='heroDescription'>
-          Um hub de conteúdo para quem quer entender o 'porquê' antes do 'como' (ou só está perdido mesmo), com menos hype e mais código.
-        </p>
-        <div className='heroCtas'>
-          <Button label="Ler o que importa" variant="primary" href="/artigos" />
-          <Button label="Sobre" variant="outline" href="/sobre" />
-        </div>
-      </article>
+      {/* Decorações geométricas */}
+      <span className='heroAccentDot heroAccentDot--1' aria-hidden="true" />
+      <span className='heroAccentDot heroAccentDot--2' aria-hidden="true" />
+      <span className='heroAccentLine heroAccentLine--1' aria-hidden="true" />
+      <span className='heroAccentLine heroAccentLine--2' aria-hidden="true" />
+      <div className='heroDotGrid' aria-hidden="true">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <span key={i} className='heroDotGrid__dot' />
+        ))}
+      </div>
+      <div className='heroCrossAccent' aria-hidden="true">
+        <span className='heroCrossAccent__h' />
+        <span className='heroCrossAccent__v' />
+      </div>
 
-      <aside className='heroHighLight'>
-        <h2>/* O que tem no Hub */</h2>
-        <ul className='heroFeatureList'>
-          <li>
-            <Icon iconName="article" aria-hidden="true" />
-            Explorações técnicas e opiniões (fortes).
-          </li>
-          <li>
-            <Icon iconName="conversion_path" aria-hidden="true" />
-            O que eu queria ter ouvido no começo.
-          </li>
-          <li>
-            <Icon iconName="diversity_3" aria-hidden="true" />
-            Agenda da comunidade (e onde nos vemos).
-          </li>
-          <li>
-            <Icon iconName="Inventory_2" aria-hidden="true" />
-            Recursos curados (e testados) por mim.
-          </li>
-        </ul>
-      </aside>
+      <div className='heroInner'>
+        <div className='heroLeft'>
+          <p className='heroTagline'><HeroTyped /></p>
+
+          <div className='heroHeadline' aria-label="Engenharia de software com alma de artesã.">
+            <span className='heroHeadline__1'>Engenharia de</span>
+            <span className='heroHeadline__2'>software com alma de</span>
+            <span className='heroHeadline__3'>artesã.</span>
+          </div>
+
+          <p className='heroDescription'>
+            Um hub de conteúdos para quem quer entender o &apos;porquê&apos; antes do &apos;como&apos; (ou só está perdido mesmo).
+          </p>
+
+          <div className='heroCtas'>
+            <Button label="Explorar artigos →" variant="primary" href="/artigos" />
+            <Button label="Sobre mim" variant="outline" href="/sobre" />
+          </div>
+        </div>
+
+        <aside className='heroFeaturedCard' aria-label="Artigo em destaque">
+          <span className='heroFeaturedCard__tag'>DESTAQUE</span>
+          <div className='heroFeaturedCard__divider' aria-hidden="true" />
+          <h2 className='heroFeaturedCard__title'>
+            Projeto em primeiro plano: acessibilidade no frontend
+          </h2>
+          <p className='heroFeaturedCard__body'>
+            Estudo aplicado com heurísticas de contraste, foco visível e navegação por teclado para ambientes de alta complexidade.
+          </p>
+          <footer className='heroFeaturedCard__footer'>
+            <span className='heroFeaturedCard__avatar' aria-hidden="true" />
+            <div className='heroFeaturedCard__meta'>
+              <span className='heroFeaturedCard__author'>leticia vargas</span>
+              <time className='heroFeaturedCard__date'>10 ABR 2026</time>
+            </div>
+            <span className='heroFeaturedCard__arrow' aria-hidden="true">&gt;</span>
+          </footer>
+        </aside>
+      </div>
+
+      {/* Code accents decorativos */}
+      <div className='heroCodeAccents' aria-hidden="true">
+        <span>{'<div className="hero">'}</span>
+        <span>{'  const [ready, setReady] = useState(true);'}</span>
+        <span>{'</div>'}</span>
+      </div>
     </section>
   );
 }

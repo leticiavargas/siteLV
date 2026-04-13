@@ -23,6 +23,8 @@
 
   --neutral-color-900: #313131;
 
+  --color-light-purple: #E1D3E8;
+
   --background: var(--neutral-color-100);
   --foreground: var(--neutral-color-900);
 

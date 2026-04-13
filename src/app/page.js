@@ -2,7 +2,7 @@ import {
   Header,
   Hero,
   AboutSection,
-  ArticleSection,
+  HomeArticlesSection,
   ProjectsSection,
   EventsSection,
   FAQSection,
@@ -23,7 +23,7 @@ function formatDate(date, endDate) {
 export default async function Home() {
   const [articlesData, faqData, eventsData, projectsData] = await Promise.all([
     articlesApi.list({ perPage: 8, status: 'published', visible: true }),
-    faqApi.list({ perPage: 3, status: 'published', visible: true }),
+    faqApi.list({ perPage: 4, status: 'published', visible: true }),
     eventsApi.list({ future: true, status: 'published', visible: true, perPage: 10 }),
     projectsApi.list({ status: 'published', visible: true, perPage: 3 }),
   ]);
@@ -35,6 +35,7 @@ export default async function Home() {
     href: `/artigos/${a.id}`,
     iconName: a.iconName,
     publishedAt: a.publishedAt ?? null,
+    imageUrl: a.imageUrl ?? null,
   }));
 
   const faqItems = faqData.items.map(f => ({
@@ -44,10 +45,10 @@ export default async function Home() {
 
   const events = eventsData.items.map(e => ({
     title: e.title,
-    date: formatDate(e.date, e.endDate),
-    image: e.imageUrl,
+    rawDate: e.date,
     href: e.href,
     format: e.format,
+    location: e.location,
     attending: e.attending,
   }));
 
@@ -62,15 +63,15 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
       <main>
         <PageAnimations />
-        <Hero />
-        <ArticleSection
+        <div style={{ position: 'relative' }}>
+          <Header variant="dark" />
+          <Hero />
+        </div>
+        <HomeArticlesSection
           articles={articles}
           moreHref="/artigos"
-          title="Dos Conceitos à Prática"
-          subtitle="Conteúdo autoral e curado sobre arquitetura, desenvolvimento full stack e carreira."
         />
         <div className="animate-on-scroll">
           <ProjectsSection projects={projects} />
