@@ -148,6 +148,13 @@ export function RichTextEditor({ value, onChange, pasta = 'misc' }) {
         >
           <span className="material-symbols-outlined">format_quote</span>
         </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          active={editor.isActive('codeBlock')}
+          title="Bloco de código"
+        >
+          <span className="material-symbols-outlined">code_blocks</span>
+        </ToolbarButton>
 
         <div className="richEditorDivider" aria-hidden="true" />
 

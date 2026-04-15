@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding: 4rem 5rem;
+  margin-top: calc(-1 * var(--header-height));
+  padding: calc(4rem + var(--header-height)) 5rem 4rem;
   background:
     linear-gradient(
       135deg,

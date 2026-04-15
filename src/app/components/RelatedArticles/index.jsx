@@ -1,12 +1,13 @@
 import './styles.css';
 import { Tag } from '../tag';
 
-const RelatedArticleItem = ({ title, tags = [], href = '#' }) => (
+const RelatedArticleItem = ({ title, excerpt, tags = [], href = '#' }) => (
   <li className='relatedItem'>
     <a href={href} className='relatedItemLink'>
       <span className='relatedItemDot' aria-hidden="true"></span>
       <div className='relatedItemContent'>
         <p className='relatedItemTitle'>{title}</p>
+        {excerpt && <p className='relatedItemExcerpt'>{excerpt}</p>}
         <ul className='relatedItemTags'>
           {tags.map((tag) => (
             <li key={tag}><Tag text={tag} /></li>
@@ -26,6 +27,7 @@ const RelatedArticles = ({ articles = [] }) => {
           <RelatedArticleItem
             key={index}
             title={article.title}
+            excerpt={article.excerpt}
             tags={article.tags}
             href={article.href}
           />

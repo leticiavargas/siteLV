@@ -94,6 +94,17 @@
   line-height: 1.6;
 }
 
+.articleFormCharCount {
+  font-size: 0.75rem;
+  color: var(--neutral-color-300);
+  text-align: right;
+}
+
+.articleFormCharCount--over {
+  color: #c0392b;
+  font-weight: var(--medium);
+}
+
 .articleFormSelect {
   cursor: pointer;
   appearance: none;

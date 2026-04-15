@@ -21,11 +21,12 @@ function formatDate(date, endDate) {
 }
 
 export default async function Home() {
-  const [articlesData, faqData, eventsData, projectsData] = await Promise.all([
+  const [articlesData, faqData, eventsData, projectsData, featuredData] = await Promise.all([
     articlesApi.list({ perPage: 8, status: 'published', visible: true }),
     faqApi.list({ perPage: 4, status: 'published', visible: true }),
     eventsApi.list({ future: true, status: 'published', visible: true, perPage: 10 }),
     projectsApi.list({ status: 'published', visible: true, perPage: 3 }),
+    articlesApi.list({ featured: true, status: 'published', visible: true, perPage: 1 }),
   ]);
 
   const articles = articlesData.items.map(a => ({
@@ -52,6 +53,8 @@ export default async function Home() {
     attending: e.attending,
   }));
 
+  const featuredArticle = featuredData.items[0] ?? null;
+
   const projects = projectsData.items.map(p => ({
     title: p.title,
     description: p.description,
@@ -65,10 +68,8 @@ export default async function Home() {
     <>
       <main>
         <PageAnimations />
-        <div style={{ position: 'relative' }}>
-          <Header variant="dark" />
-          <Hero />
-        </div>
+        <Header variant="dark" />
+        <Hero featuredArticle={featuredArticle} />
         <HomeArticlesSection
           articles={articles}
           moreHref="/artigos"

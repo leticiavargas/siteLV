@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Button } from '../Button';
 import { ProjectCard } from '../ProjectCard';
 import './styles.css';
 
@@ -14,9 +14,7 @@ const ProjectsSection = ({ projects = [] }) => {
           <h2 className="projectsSectionTitle">Crafted Code: Laboratório Técnico</h2>
           <p className="projectsSectionSubtitle">Soluções autorais documentadas (ou talvez não) do código à arquitetura.</p>
         </div>
-        <Link href="/projetos" className="projectsSectionCta">
-          explorar todos projetos
-        </Link>
+        <Button variant="outlight" href="/projetos">explorar todos projetos</Button>
       </div>
       <ul className="projectsGrid">
         {projects.map((project, index) => (

@@ -7138,6 +7138,7 @@
           "id": "LjDp9",
           "name": "Articles Section",
           "width": "fill_container",
+          "height": 1282,
           "fill": "$color-off-white",
           "layout": "vertical",
           "children": [
@@ -7771,290 +7772,649 @@
                     "thickness": 1,
                     "fill": "#1626501f"
                   }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "ju4Jc",
-          "name": "Dev Handoff Summary",
-          "width": 1440,
-          "height": 657,
-          "fill": "$color-off-white",
-          "layout": "vertical",
-          "gap": 24,
-          "padding": [
-            56,
-            80
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "Un9mR",
-              "name": "Header",
-              "width": "fill_container",
-              "layout": "vertical",
-              "gap": 8,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "VTlxO",
-                  "name": "Title",
-                  "fill": "$color-primary",
-                  "content": "Resumo técnico para handoff de desenvolvimento",
-                  "fontFamily": "Inter",
-                  "fontSize": 42,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "CKRGA",
-                  "name": "Subtitle",
-                  "fill": "$color-body-text",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "Escopo pronto no Site FinalVersion: header, hero, articles, events e TLDR. Seções about e footer excluídas deste handoff.",
-                  "lineHeight": 1.45,
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "WdToR",
-              "name": "Meta",
-              "width": "fill_container",
-              "justifyContent": "space_between",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "cOpwI",
-                  "name": "metaL",
-                  "fill": "$color-primary",
-                  "content": "Node alvo: cEjl7 · status: pronto para implementação",
-                  "fontFamily": "IBM Plex Mono",
-                  "fontSize": 12,
-                  "fontWeight": "700"
                 },
                 {
                   "type": "frame",
-                  "id": "PmHAu",
-                  "name": "metaRWrap",
-                  "fill": "$color-light-purple",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "$color-accent"
-                  },
+                  "id": "Gu3PE",
+                  "x": 0,
+                  "y": 660,
+                  "name": "Projects Section",
+                  "width": "fill_container(1440)",
+                  "height": 625,
+                  "fill": "#172650ff",
+                  "layout": "vertical",
+                  "gap": 26,
                   "padding": [
-                    8,
-                    12
-                  ],
-                  "justifyContent": "center",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "8AvHU",
-                      "name": "metaR",
-                      "fill": "$color-primary",
-                      "content": "handoff v1",
-                      "fontFamily": "IBM Plex Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "2Gglv",
-              "name": "Matriz Técnica",
-              "width": "fill_container",
-              "fill": "#ffffff",
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "$color-light-gray"
-              },
-              "layout": "vertical",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "vAeLb",
-                  "name": "rowH",
-                  "width": "fill_container",
-                  "fill": "$color-primary",
-                  "padding": [
-                    12,
-                    14
+                    56,
+                    80,
+                    72,
+                    80
                   ],
                   "children": [
                     {
-                      "type": "text",
-                      "id": "03Q3g",
-                      "name": "rowHT",
-                      "fill": "$color-off-white",
-                      "textGrowth": "fixed-width",
+                      "type": "frame",
+                      "id": "zQpQ5",
+                      "name": "secHead",
                       "width": "fill_container",
-                      "content": "SEÇÃO | NODE | STATUS | RESUMO TÉCNICO",
-                      "fontFamily": "IBM Plex Mono",
-                      "fontSize": 12,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "A1yLh",
-                  "name": "row1",
-                  "width": "fill_container",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": {
-                      "bottom": 1
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "vaE3q",
+                          "name": "leftHead",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SowAM",
+                              "name": "secTitle",
+                              "fill": "#F5F3FF",
+                              "content": "Crafed Code: Laboratório Técnico",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 24,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "jR12l",
+                              "name": "secMeta",
+                              "fill": "#A7AFCC",
+                              "content": "projetos autoriais, estudos e entregas reais em producao",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GpqUc",
+                          "name": "cta",
+                          "fill": "#F5F3FF",
+                          "cornerRadius": 2,
+                          "gap": 6,
+                          "padding": [
+                            10,
+                            14
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "OK7r5",
+                              "name": "ctaText",
+                              "fill": "#0E1120",
+                              "content": "explorar todos projetos",
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 12,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
                     },
-                    "fill": "$color-light-gray"
-                  },
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "children": [
                     {
-                      "type": "text",
-                      "id": "aXrvg",
-                      "name": "row1t",
-                      "fill": "$color-body-text",
-                      "textGrowth": "fixed-width",
+                      "type": "frame",
+                      "id": "9KpJf",
+                      "name": "Project Cards",
                       "width": "fill_container",
-                      "content": "Header (nav) | mLewU | PRONTO | Estrutura com logo, links e social; altura 84; padding [24,80]; pronto para mapear rotas e ações.",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "wBA2p",
-                  "name": "row2",
-                  "width": "fill_container",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": {
-                      "bottom": 1
-                    },
-                    "fill": "$color-light-gray"
-                  },
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "cms9W",
-                      "name": "row2t",
-                      "fill": "$color-body-text",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "Hero | TRv6e | PRONTO | Hero 1440x720 com CTA principal/secundário, card em destaque e acentos visuais; copy final já aplicada.",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "6TziI",
-                  "name": "row3",
-                  "width": "fill_container",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": {
-                      "bottom": 1
-                    },
-                    "fill": "$color-light-gray"
-                  },
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "qPPWN",
-                      "name": "row3t",
-                      "fill": "$color-body-text",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "Articles | LjDp9 | PRONTO | Seção editorial com card de imagem, lista lateral e divisores; pronta para binding com dados de posts.",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "UAsjh",
-                  "name": "row4",
-                  "width": "fill_container",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": {
-                      "bottom": 1
-                    },
-                    "fill": "$color-light-gray"
-                  },
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "rgA0L",
-                      "name": "row4t",
-                      "fill": "$color-body-text",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "Events | r2wj7 | PRONTO | Módulo com header editorial, barras rítmicas e bloco de agenda; layout preparado para lista dinâmica.",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "mBNxs",
-                  "name": "row5",
-                  "width": "fill_container",
-                  "padding": [
-                    12,
-                    14
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "Mt6HF",
-                      "name": "row5t",
-                      "fill": "$color-body-text",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "TLDR | qRokq | PRONTO | Área final em gradiente com acordeão (4 itens) e ação de fechamento; pronta para lógica de expand/collapse.",
-                      "fontFamily": "Inter",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
+                      "gap": 18,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "gQUQW",
+                          "name": "Projeto Card 1",
+                          "rotation": -1.2,
+                          "width": "fill_container",
+                          "fill": "#F6F2FF",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#0E0F1A"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            18,
+                            18,
+                            16,
+                            18
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "JIl4p",
+                              "name": "Projeto Foto",
+                              "metadata": {
+                                "type": "unsplash",
+                                "username": "onlysiamak",
+                                "link": "https://unsplash.com/@onlysiamak",
+                                "author": "Siamak"
+                              },
+                              "width": "fill_container",
+                              "height": 190,
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "https://images.unsplash.com/photo-1642097817523-619e43483c20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzU5NjM5MjN8&ixlib=rb-4.1.0&q=80&w=1080",
+                                "mode": "fill"
+                              }
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "rQurT",
+                              "name": "line1",
+                              "fill": "#0E0F1A",
+                              "width": "fill_container",
+                              "height": 2
+                            },
+                            {
+                              "type": "text",
+                              "id": "g9pEY",
+                              "name": "title1",
+                              "fill": "#0E0F1A",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "PLATAFORMA DE INSIGHTS COMERCIAIS",
+                              "lineHeight": 1.12,
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 22,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.3
+                            },
+                            {
+                              "type": "text",
+                              "id": "uEVRM",
+                              "name": "desc1",
+                              "fill": "#22273B",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Painel de performance com funil, cohort e alertas de meta. Foco em leitura rapida e decisao em tempo real.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "62UUO",
+                              "name": "tagRow1",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "Ga0AF",
+                                  "name": "tagA",
+                                  "fill": "#E6DEFF",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "fePFK",
+                                      "name": "tagAT",
+                                      "fill": "#392457",
+                                      "content": "React",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "zWqFp",
+                                  "name": "tagB",
+                                  "fill": "#E1D3E8",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Bev0s",
+                                      "name": "tagBT",
+                                      "fill": "#193E67",
+                                      "content": "TypeScript",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "PGN1u",
+                                  "name": "tagC",
+                                  "fill": "#FFE2F8",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "4hF8P",
+                                      "name": "tagCT",
+                                      "fill": "#5B1F56",
+                                      "content": "DataViz",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "VOTXZ",
+                              "name": "btn1",
+                              "fill": "#0E0F1A",
+                              "cornerRadius": 2,
+                              "gap": 6,
+                              "padding": [
+                                10,
+                                14
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "MEBal",
+                                  "name": "btn1T",
+                                  "fill": "#F6F2FF",
+                                  "content": "ACESSAR DETALHES >",
+                                  "lineHeight": 1,
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.3
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "aZsiB",
+                          "name": "Projeto Card 2",
+                          "rotation": 1.1,
+                          "width": "fill_container",
+                          "fill": "#161C2E",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#9448BC"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            18,
+                            18,
+                            16,
+                            18
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "WsMZ0",
+                              "name": "Projeto Foto",
+                              "metadata": {
+                                "type": "unsplash",
+                                "username": "alvarordesign",
+                                "link": "https://unsplash.com/@alvarordesign",
+                                "author": "Alvaro Reyes"
+                              },
+                              "width": "fill_container",
+                              "height": 190,
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "https://images.unsplash.com/photo-1564424555153-04228f0aa7ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzU5NjM5NjV8&ixlib=rb-4.1.0&q=80&w=1080",
+                                "mode": "fill"
+                              }
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "pr10Y",
+                              "name": "line2",
+                              "fill": "#9448BC",
+                              "width": "fill_container",
+                              "height": 2
+                            },
+                            {
+                              "type": "text",
+                              "id": "Cbc6E",
+                              "name": "title2",
+                              "fill": "#F0E8FF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "APP DE TURNOS PARA EQUIPE DE CAMPO",
+                              "lineHeight": 1.12,
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 22,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.3
+                            },
+                            {
+                              "type": "text",
+                              "id": "EjKxw",
+                              "name": "desc2",
+                              "fill": "#D8CCF0",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Fluxo de escala, troca e notificacoes para operacao 24/7, com painel de supervisor e trilha de auditoria.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "CMZ5O",
+                              "name": "tagRow2",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "AfO6H",
+                                  "name": "t2A",
+                                  "fill": "#2A2F52",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "p46Rd",
+                                      "name": "t2AT",
+                                      "fill": "#BFE1FF",
+                                      "content": "Next.js",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "dx0aD",
+                                  "name": "t2B",
+                                  "fill": "#3A2A5A",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "ggeGH",
+                                      "name": "t2BT",
+                                      "fill": "#C9CBFF",
+                                      "content": "Prisma",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "zFXF4",
+                                  "name": "t2C",
+                                  "fill": "#162650",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "gxpRC",
+                                      "name": "t2CT",
+                                      "fill": "#BDEFE8",
+                                      "content": "PWA",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "qZbhJ",
+                              "name": "btn2",
+                              "fill": "#9448BC",
+                              "cornerRadius": 2,
+                              "gap": 6,
+                              "padding": [
+                                10,
+                                14
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "ebwNJ",
+                                  "name": "btn2T",
+                                  "fill": "#F6F2FF",
+                                  "content": "ACESSAR DETALHES >",
+                                  "lineHeight": 1,
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.3
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "KNSwG",
+                          "name": "Projeto Card 3",
+                          "rotation": -0.9,
+                          "width": "fill_container",
+                          "fill": "#2D1F3B",
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 2,
+                            "fill": "#F1A6FF"
+                          },
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": [
+                            18,
+                            18,
+                            16,
+                            18
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "qwfxP",
+                              "name": "Projeto Foto",
+                              "metadata": {
+                                "type": "unsplash",
+                                "username": "piggybank",
+                                "link": "https://unsplash.com/@piggybank",
+                                "author": "PiggyBank"
+                              },
+                              "width": "fill_container",
+                              "height": 190,
+                              "fill": {
+                                "type": "image",
+                                "enabled": true,
+                                "url": "https://images.unsplash.com/photo-1651126434060-6270c0a23326?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzU5NjM5NjZ8&ixlib=rb-4.1.0&q=80&w=1080",
+                                "mode": "fill"
+                              }
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "C9vU9",
+                              "name": "line3",
+                              "fill": "#F1A6FF",
+                              "width": "fill_container",
+                              "height": 2
+                            },
+                            {
+                              "type": "text",
+                              "id": "Sihqu",
+                              "name": "title3",
+                              "fill": "#FFE7FF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "MARKETPLACE DE SERVICOS B2B",
+                              "lineHeight": 1.12,
+                              "fontFamily": "IBM Plex Mono",
+                              "fontSize": 22,
+                              "fontWeight": "700",
+                              "letterSpacing": 0.3
+                            },
+                            {
+                              "type": "text",
+                              "id": "evyR2",
+                              "name": "desc3",
+                              "fill": "#F3D9FF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Cadastro de parceiros, proposta comercial e funil de contratacao com SLA e automacoes de atendimento.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "dbXoR",
+                              "name": "tagRow3",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "wG9es",
+                                  "name": "t3A",
+                                  "fill": "#4A2A56",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "5Tivl",
+                                      "name": "t3AT",
+                                      "fill": "#F3CFFF",
+                                      "content": "Node",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "lQhoa",
+                                  "name": "t3B",
+                                  "fill": "#3D2551",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "mnkUq",
+                                      "name": "t3BT",
+                                      "fill": "#F5D8FF",
+                                      "content": "PostgreSQL",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "XwloM",
+                                  "name": "t3C",
+                                  "fill": "#423C66",
+                                  "padding": [
+                                    5,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "4MOzs",
+                                      "name": "t3CT",
+                                      "fill": "#D9D5FF",
+                                      "content": "Stripe",
+                                      "lineHeight": 1.2,
+                                      "fontFamily": "IBM Plex Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal",
+                                      "letterSpacing": 0.2
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "QpapN",
+                              "name": "btn3",
+                              "fill": "#F1A6FF",
+                              "cornerRadius": 2,
+                              "gap": 6,
+                              "padding": [
+                                10,
+                                14
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "WjEDu",
+                                  "name": "btn3T",
+                                  "fill": "#2A1637",
+                                  "content": "ACESSAR DETALHES >",
+                                  "lineHeight": 1,
+                                  "fontFamily": "IBM Plex Mono",
+                                  "fontSize": 12,
+                                  "fontWeight": "700",
+                                  "letterSpacing": 0.3
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -10385,6 +10745,7 @@
               "id": "tqWIi",
               "name": "Projects Section",
               "width": "fill_container",
+              "height": 625,
               "fill": "#172650ff",
               "layout": "vertical",
               "gap": 26,

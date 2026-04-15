@@ -1,6 +1,6 @@
 import { Header, Footer } from '../components';
 import { PageHero } from '../components/PageHero';
-import { ProjectCard } from '../components/ProjectCard';
+import { ProjectListItem } from './_components/ProjectListItem';
 import { projectsApi } from '@/lib/api';
 import './styles.css';
 
@@ -15,24 +15,27 @@ export default async function Projetos() {
         <PageHero
           title="Projetos"
           subtitle="Coisas que construí, aprendi e publiquei por aí."
-          searchPlaceholder="Buscar projetos..."
         />
 
         <section className='projetosSection'>
-          <ul className='projetosGrid'>
-            {projects.map((project, index) => (
-              <li key={project.id}>
-                <ProjectCard
+          {projects.length === 0 ? (
+            <p className='projetosEmpty'>Nenhum projeto publicado ainda.</p>
+          ) : (
+            <ul className='projetosList'>
+              {projects.map((project) => (
+                <ProjectListItem
+                  key={project.id}
                   title={project.title}
                   description={project.description}
+                  details={project.details}
                   tags={project.tags ?? []}
                   imageUrl={project.imageUrl}
-                  href={project.liveHref || project.repoHref || null}
-                  variant={index}
+                  liveHref={project.liveHref}
+                  repoHref={project.repoHref}
                 />
-              </li>
-            ))}
-          </ul>
+              ))}
+            </ul>
+          )}
         </section>
       </main>
       <Footer />

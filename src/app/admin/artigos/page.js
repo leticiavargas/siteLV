@@ -3,6 +3,7 @@ import { articlesApi } from '@/lib/api';
 import { SearchBar } from '@/app/admin/_components/SearchBar';
 import { Pagination } from '@/app/admin/_components/Pagination';
 import { DeleteButton } from '@/app/admin/_components/DeleteButton';
+import { FeaturedStarButton } from './_components/FeaturedStarButton';
 import './styles.css';
 
 const PER_PAGE = 10;
@@ -12,6 +13,7 @@ export default async function AdminArtigos({ searchParams }) {
   const currentPage = Math.max(1, Number(page));
 
   const { items: artigos, total } = await articlesApi.list({ q, page: currentPage, perPage: PER_PAGE });
+  const currentFeatured = artigos.find(a => a.featured) ?? null;
 
   return (
     <>
@@ -54,6 +56,7 @@ export default async function AdminArtigos({ searchParams }) {
           <table className="adminArtigosTable">
             <thead>
               <tr>
+                <th><span className="sr-only">Destaque</span></th>
                 <th>Título</th>
                 <th>Tags</th>
                 <th>Status</th>
@@ -64,6 +67,13 @@ export default async function AdminArtigos({ searchParams }) {
             <tbody>
               {artigos.map(artigo => (
                 <tr key={artigo.id} data-oculto={!artigo.visible || undefined}>
+                  <td className="adminArtigosFeatured">
+                    <FeaturedStarButton
+                      articleId={artigo.id}
+                      isFeatured={!!artigo.featured}
+                      currentFeaturedId={currentFeatured?.id ?? null}
+                    />
+                  </td>
                   <td className="adminArtigosTitulo">
                     {!artigo.visible && (
                       <span

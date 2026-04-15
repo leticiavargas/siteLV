@@ -1,21 +1,24 @@
 .projetosSection {
-  padding: 4rem 5rem;
+  padding: 3rem 5rem 5rem;
   background-color: var(--neutral-color-100);
 }
 
-.projetosGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+.projetosList {
   list-style: none;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.projetosEmpty {
+  text-align: center;
+  color: var(--neutral-color-900);
+  opacity: 0.5;
+  font-size: 1rem;
+  padding: 4rem 0;
 }
 
 @media (max-width: 768px) {
   .projetosSection {
-    padding: 2rem 1.25rem;
-  }
-
-  .projetosGrid {
-    grid-template-columns: 1fr;
+    padding: 2rem 1.25rem 3rem;
   }
 }

@@ -1,12 +1,13 @@
 .heroContainer {
   position: relative;
-  overflow: clip;
+  overflow: visible;
   width: 100%;
   min-height: 720px;
   background: var(--secondary-color);
   display: flex;
   align-items: center;
-  padding: 6rem 5rem 5rem;
+  margin-top: calc(-1 * var(--header-height));
+  padding: calc(4rem + var(--header-height)) 5rem 5rem;
 }
 
 /* ─── Layout interno ─── */
@@ -88,19 +89,15 @@
   margin-top: 0.5rem;
   flex-wrap: wrap;
 
-  /* botão primary: borda interna branca */
-  .btn--primary {
-    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--color-white) 70%, transparent);
-  }
-
-  /* botão outline: fundo roxo claro, borda roxa */
+  /* botão outline: ghost sobre fundo dark */
   .btn--outline {
-    background-color: var(--color-light-purple);
-    color: var(--secondary-color);
-    border-color: var(--primary-color);
+    background-color: transparent;
+    color: color-mix(in srgb, var(--color-white) 85%, transparent);
+    border-color: color-mix(in srgb, var(--color-white) 30%, transparent);
 
     &:hover {
-      background-color: color-mix(in srgb, var(--color-light-purple) 85%, transparent);
+      background-color: color-mix(in srgb, var(--color-white) 8%, transparent);
+      border-color: color-mix(in srgb, var(--color-white) 50%, transparent);
     }
   }
 }
@@ -121,6 +118,12 @@
   animation: heroFadeUp 0.65s 0.25s ease both;
   position: relative;
   z-index: 1;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
 
   .heroFeaturedCard__tag {
     display: inline-block;
@@ -404,7 +407,7 @@
 
 @media (max-width: 768px) {
   .heroContainer {
-    padding: 5rem 1.25rem 3rem;
+    padding: 3rem 1.25rem 3rem;
     min-height: unset;
   }
 

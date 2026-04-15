@@ -171,6 +171,13 @@ tr[data-oculto]:hover td {
   text-transform: capitalize;
 }
 
+.adminArtigosFeatured {
+  width: 2rem;
+  text-align: center;
+  padding-right: 0 !important;
+}
+
+
 .adminArtigosStatus--publicado {
   background-color: color-mix(in srgb, #38a169 15%, transparent);
   color: #276749;

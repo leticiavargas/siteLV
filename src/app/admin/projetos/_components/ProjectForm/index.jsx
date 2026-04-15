@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TagsInput } from '@/app/admin/_components/TagsInput';
 import { ImageUpload } from '@/app/admin/_components/ImageUpload';
+import { RichTextEditor } from '@/app/admin/_components/RichTextEditor';
 import { projectsApi } from '@/lib/api';
 import './styles.css';
 
 const EMPTY_FORM = {
   title: '',
   description: '',
+  details: '',
   tags: [],
   liveHref: '',
   repoHref: '',
@@ -81,6 +83,16 @@ export function ProjectForm({ projectId, initialData }) {
               placeholder="O que é o projeto, o que ele resolve, o que foi aprendido"
               rows={4}
             />
+          </div>
+
+          <div className="projectFormGroup">
+            <label className="projectFormLabel">Detalhes do projeto</label>
+            <RichTextEditor
+              value={form.details}
+              onChange={val => setField('details', val)}
+              pasta="projetos"
+            />
+            <p className="projectFormHint">Conceito, stack, decisões técnicas, aprendizados — exibido na página de projetos ao expandir o card.</p>
           </div>
 
           <div className="projectFormRow">

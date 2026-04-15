@@ -1,17 +1,20 @@
 import './styles.css';
 
-const Button = ({ label, variant = 'primary', href, onClick, type = 'button' }) => {
+const Button = ({ label, children, variant = 'primary', href, onClick, type = 'button', className = '' }) => {
+  const content = children ?? label;
+  const cls = `btn btn--${variant}${className ? ` ${className}` : ''}`;
+
   if (href) {
     return (
-      <a href={href} className={`btn btn--${variant}`}>
-        {label}
+      <a href={href} className={cls}>
+        {content}
       </a>
     );
   }
 
   return (
-    <button type={type} className={`btn btn--${variant}`} onClick={onClick}>
-      {label}
+    <button type={type} className={cls} onClick={onClick}>
+      {content}
     </button>
   );
 };

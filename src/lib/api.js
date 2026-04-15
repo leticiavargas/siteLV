@@ -34,8 +34,8 @@ function qs(params = {}) {
 // ---------------------------------------------------------------------------
 
 export const articlesApi = {
-  list({ q, page, perPage, status, visible } = {}) {
-    return req(`/articles${qs({ q, page, perPage, status, visible })}`);
+  list({ q, page, perPage, status, visible, featured } = {}) {
+    return req(`/articles${qs({ q, page, perPage, status, visible, featured })}`);
   },
   get(id) {
     return req(`/articles/${id}`);

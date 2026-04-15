@@ -1,0 +1,36 @@
+.featuredStarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  padding: 0;
+
+  .material-symbols-outlined {
+    font-size: 1.25rem;
+    color: var(--neutral-color-300);
+    transition: color 0.15s ease;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: color-mix(in srgb, #d4a017 12%, transparent);
+
+    .material-symbols-outlined {
+      color: #d4a017;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
+.featuredStarBtn--active .material-symbols-outlined {
+  color: #d4a017;
+}

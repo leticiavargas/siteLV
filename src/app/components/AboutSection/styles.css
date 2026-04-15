@@ -1,24 +1,16 @@
 .aboutSection {
-  padding: 3rem 5rem;
-  background-color: var(--neutral-color-100);
+  background: var(--secondary-color);
+  color: var(--neutral-color-100);
 }
 
-/* ── Card ────────────────────────────────────────────────────────────────── */
+/* ── Card (agora apenas estrutura de grid, sem visual de caixa) ─────────── */
 
 .aboutCard {
   position: relative;
   display: grid;
-  grid-template-columns: 320px 1fr;
-  min-height: 380px;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
-  background: 
-    linear-gradient(135deg, color-mix(in srgb, var(--color-white) 5%, transparent) 0%, transparent 55%),
-    var(--secondary-color);
-  transition: background 0.3s ease;
-  box-shadow: 0 20px 50px -20px rgba(0,0,0,0.5);
-  color: var(--neutral-color-100);
+  grid-template-columns: 280px minmax(auto, 580px);
+  min-height: 300px;
+  margin: 0 auto;
 }
 
 /* ── Gutter (coluna esquerda) ────────────────────────────────────────────── */
@@ -108,12 +100,11 @@
 /* ── Conteúdo (coluna direita) ───────────────────────────────────────────── */
 
 .aboutContent {
-  padding: 3rem 3.5rem;
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 3rem;
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
-  align-items: center;
 }
 
 .aboutContent::before {
@@ -212,9 +203,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid color-mix(in srgb, var(--color-white) 5%, transparent);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .aboutTerminalHeader .dot {
@@ -232,12 +223,12 @@
 }
 
 .aboutHeading {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-family: var(--font-fivo-sans);
   font-weight: var(--bold);
   line-height: 0.9;
   letter-spacing: -0.05em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: var(--color-white);
   text-shadow: 2px 2px 0px var(--primary-color);
 }
@@ -290,13 +281,8 @@
 
   .aboutCard {
     grid-template-columns: 1fr;
-    grid-template-rows: 120px 1fr;
+    grid-template-rows: 100px 1fr;
     min-height: unset;
-  }
-
-  /* Gutter vira faixa horizontal no topo */
-  .aboutGutter {
-    border-radius: 0;
   }
 
   .aboutGutterLines {

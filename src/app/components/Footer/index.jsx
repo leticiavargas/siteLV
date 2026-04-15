@@ -25,23 +25,9 @@ const NAV_LINKS = [
 const Footer = () => {
   return (
     <footer className='footerContainer'>
-      <span className='footerBlob footerBlob--1' aria-hidden="true" />
-      <span className='footerBlob footerBlob--2' aria-hidden="true" />
-      <span className='footerBlob footerBlob--3' aria-hidden="true" />
-
       <div className='footerTop'>
         <div className='footerBrand'>
           <Image src={icone} alt="Ícone Letícia Vargas" width={48} />
-          <ul className='footerSocial' aria-label="Redes sociais">
-            {SOCIAL_LINKS.map(({ iconName, label, href }) => (
-              <li key={iconName}>
-                <a href={href} target="_blank" rel="noopener noreferrer" className='footerSocialLink'>
-                  <Icon iconName={iconName} />
-                  <span>{label}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <nav className='footerNav' aria-label="Links do rodapé">
@@ -54,11 +40,20 @@ const Footer = () => {
           </ul>
         </nav>
 
+        <ul className='footerSocial' aria-label="Redes sociais">
+          {SOCIAL_LINKS.map(({ iconName, label, href }) => (
+            <li key={iconName}>
+              <a href={href} target="_blank" rel="noopener noreferrer" className='footerSocialLink'>
+                <Icon iconName={iconName} />
+                <span>{label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
         <div className='footerGame'>
           <GameEaster />
         </div>
-
-        
       </div>
 
       

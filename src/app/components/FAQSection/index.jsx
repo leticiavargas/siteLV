@@ -1,4 +1,7 @@
+'use client';
+
 import './styles.css';
+import { Button } from '../Button';
 
 const FAQSection = ({ items = [] }) => {
   return (
@@ -7,7 +10,7 @@ const FAQSection = ({ items = [] }) => {
         <p className="faqEyebrow">FAQ ESSENCIAL</p>
         <h2 className="faqTitle">TL;DR</h2>
         <p className="faqSubtitle">
-          Respostas rápidas para perguntas que o ChatGPT costuma enrolar para responder.
+          Respostas rápidas para perguntas que a IA costuma enrolar para responder.
         </p>
       </div>
 
@@ -35,10 +38,12 @@ const FAQSection = ({ items = [] }) => {
         </ul>
 
         <div className="faqFooter">
-          <a href="/faq" className="faqCta">
-            <span>VER LISTA COMPLETA</span>
-            <span className="material-symbols-outlined faqCtaIcon">arrow_forward</span>
-          </a>
+          <Button
+            variant="navy"
+             href="/faq" 
+          >
+            ver lista completa
+          </Button>
         </div>
       </div>
     </section>

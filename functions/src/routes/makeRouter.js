@@ -40,6 +40,10 @@ export function makeRouter(colecao, filtrar, { aoExcluir, aoAtualizar } = {}) {
         // visible=false → inclui somente itens explicitamente ocultos
         items = items.filter(i => visFiltro ? i.visible !== false : i.visible === false);
       }
+      if (req.query.featured !== undefined) {
+        const featFiltro = req.query.featured === 'true';
+        items = items.filter(i => featFiltro ? i.featured === true : i.featured !== true);
+      }
 
       const total = items.length;
       const p = parseInt(page, 10);

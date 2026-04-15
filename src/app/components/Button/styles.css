@@ -2,6 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.375rem;
   padding: 0.625rem 1.5rem;
   border-radius: 2rem;
   font-size: 0.875rem;
@@ -9,21 +10,67 @@
   font-family: var(--font-inter);
   cursor: pointer;
   text-decoration: none;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.85;
-  }
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+  border: 2px solid transparent;
 }
 
+/* primary — fundo roxo, texto branco */
 .btn--primary {
   background-color: var(--primary-color);
   color: var(--neutral-color-100);
-  border: 2px solid var(--primary-color);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--primary-color) 85%, var(--color-black));
+    transform: translateY(-1px);
+  }
 }
 
+/* outline — borda neutra, texto escuro; adapta ao contexto escuro via CSS pai */
 .btn--outline {
   background-color: transparent;
   color: var(--neutral-color-900);
-  border: 2px solid var(--neutral-color-300);
+  border-color: var(--neutral-color-300);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--neutral-color-900) 6%, transparent);
+    border-color: var(--neutral-color-300);
+    transform: translateY(-1px);
+  }
+}
+
+/* outline — borda neutra, texto claro; adapta ao contexto escuro via CSS pai */
+.btn--outlight {
+  background-color: transparent;
+  color: var(--neutral-color-300);
+  border-color: var(--neutral-color-300);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--neutral-color-900) 6%, transparent);
+    border-color: var(--neutral-color-300);
+    transform: translateY(-1px);
+  }
+}
+/* ghost — borda navy sutil, texto navy; para fundos claros */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border-color: color-mix(in srgb, var(--secondary-color) 25%, transparent);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--secondary-color) 6%, transparent);
+    border-color: color-mix(in srgb, var(--secondary-color) 45%, transparent);
+    transform: translateY(-1px);
+  }
+}
+
+/* navy — fundo navy,  texto branco */
+.btn--navy {
+  background-color: var(--secondary-color);
+  color: var(--color-white);
+  border-color: var(--secondary-color);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--secondary-color) 85%, var(--color-black));
+    transform: translateY(-1px);
+  }
 }

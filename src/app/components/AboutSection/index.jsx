@@ -145,21 +145,6 @@ const AboutSection = () => {
             </p>
             <a href="/sobre" className='aboutLink'>Conheça minha história →</a>
           </div>
-          <aside className='aboutTerminalStats' aria-hidden="true">
-            <div className='statsHeader'>[ BUILD_INFO ]</div>
-            <ul className='statsList'>
-              <li> {'>'} STACK: NEXT.js 15 // REACT 19</li>
-              <li> {'>'} CSS: HANDCRAFTED // ZERO_FRAMEWORK</li>
-              <li> {'>'} BUNDLE: 42KB (GZIPPED)</li>
-              <li> {'>'} PERF: 100 // ACC: 100 // SEO: 100</li>
-              <li> {'>'} DEPLOY_TIME: 1.2s</li>
-              <li> 
-                {'>'} STATUS: STABLE
-                <span className="terminalCursor" aria-hidden="true">|</span>
-              </li>
-            </ul>
-            <div className='statsFooter'>L-VRS // REF.06</div>
-          </aside>
         </div>
             
 

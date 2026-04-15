@@ -2,26 +2,114 @@
   display: none;
 }
 
-.headerContainer.headerContainer--dark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
   z-index: 10;
+  padding: 1rem 6rem;
   background-color: transparent;
 
-  > nav ul li a {
-    color: color-mix(in srgb, var(--color-white) 85%, transparent);
+  > nav {
+    ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
 
-    &:hover {
-      color: var(--color-white);
+      li {
+        ::before,
+        ::after {
+          content: "";
+          position: absolute;
+          display: block;
+          border: 0px solid transparent;
+          width: 0%;
+          height: 0%;
+          transition: all 0.4s ease;
+        }
+
+        ::after {
+          top: 0;
+          right: 0;
+          border-top: 2px solid transparent;
+          border-right: 2px solid transparent;
+        }
+
+        ::before {
+          left: 0;
+          bottom: 0;
+          border-bottom: 2px solid transparent;
+          border-left: 2px solid transparent;
+        }
+
+        :hover::before,
+        :hover::after {
+          width: 10px;
+          height: 10px;
+          border-color: var(--secondary-color);
+        }
+
+        a {
+          font-size: 1rem;
+          color: color-mix(in srgb, var(--neutral-color-900) 85%, transparent);
+          padding: 8px;
+          position: relative;
+          display: inline-block;
+          transition: color 0.2s ease;
+          
+          &:hover {
+            color: var(--neutral-color-900);
+          }
+        }
+      }
     }
   }
 
-  .social a .icon {
-    filter: brightness(0) invert(1);
+  .social {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+
+    a {
+      color: var(--neutral-color-900);
+      opacity: 0.65;
+      transition: opacity 0.2s ease;
+      display: flex;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* dark — home, fundo navy/colorido */
+.headerContainer--dark {
+  > nav ul li {
+
+    :hover::before,
+    :hover::after {
+      width: 10px;
+      height: 10px;
+      border-color: var(--primary-color);
+    }
+
+    a {
+      color: color-mix(in srgb, var(--color-white) 85%, transparent);
+  
+      &:hover {
+        color: var(--color-white);
+      }
+    }
+  }
+  
+
+  
+
+  .social a {
+    color: var(--color-white);
     opacity: 0.75;
-    transition: opacity 0.2s ease;
 
     &:hover {
       opacity: 1;
@@ -33,71 +121,9 @@
   }
 }
 
-.headerContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-
-  padding: 1.25rem 5rem;
-
-  background-color: var(--neutral-color-50);
-
-  > nav {
-    ul {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-
-      li {
-          ::before,
-          ::after {
-            content: "";
-            position: absolute;
-            display: block;
-            border: 0px solid transparent;
-            width: 0%;
-            height: 0%;
-            transition: all 0.4s ease;
-          }
-
-          ::after {
-            top: 0;
-            right: 0;
-            border-top: 2px solid transparent;
-            border-right: 2px solid transparent;
-          }
-
-          ::before {
-            left: 0;
-            bottom: 0;
-            border-bottom: 2px solid transparent;
-            border-left: 2px solid transparent;
-          }
-
-          :hover::before,
-          :hover::after {
-            width: 10px;
-            height: 10px;
-            border-color: var(--primary-color);
-          }
-
-        a {
-          font-size: 1rem;
-          color: var(--neutral-color-900);
-          padding: 8px;
-          position: relative;
-          display: inline-block;
-        }
-      }
-    }
-  }
-
-  .social {
-    display: flex;
-    gap: 0.5rem;
-    list-style: none;
-  }
+.headerLogo {
+  width: 118px;
+  height: auto;
 }
 
 @media (max-width: 768px) {
@@ -120,7 +146,7 @@
     justify-content: center;
     background: none;
     border: none;
-    color: var(--neutral-color-900);
+    color: var(--color-white);
     cursor: pointer;
     padding: 0.25rem;
 
@@ -140,8 +166,8 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--neutral-color-50);
-    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-black) 12%, transparent);
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-black) 25%, transparent);
     z-index: 100;
     padding: 1rem 1.25rem 1.5rem;
 
@@ -155,9 +181,13 @@
       display: block;
       padding: 0.875rem 0.5rem;
       font-size: 1rem;
-      color: var(--neutral-color-900);
-      border-bottom: 1px solid var(--neutral-color-200);
+      color: color-mix(in srgb, var(--color-white) 85%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
       text-decoration: none;
+
+      &:hover {
+        color: var(--color-white);
+      }
     }
 
     li:last-child a {

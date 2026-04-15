@@ -16,6 +16,7 @@ const EMPTY_FORM = {
   imageUrl: '',
   status: 'draft',
   visible: true,
+  featured: false,
   publishedAt: null,
 };
 
@@ -83,6 +84,9 @@ export function ArticleForm({ artigoId, initialData }) {
               placeholder="Resumo exibido no card e no topo do artigo"
               rows={3}
             />
+            <span className={`articleFormCharCount${form.excerpt.length > 120 ? ' articleFormCharCount--over' : ''}`}>
+              {form.excerpt.length} / 120 caracteres
+            </span>
           </div>
 
           <div className="articleFormGroup">

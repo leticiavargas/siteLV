@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import './styles.css';
+import { Button } from '../Button';
 
 function formatShortDate(isoString) {
   if (!isoString) return null;
@@ -30,9 +31,7 @@ const HomeArticlesSection = ({ articles = [], moreHref }) => {
             <h2 className="homeArticlesTitle">Dos conceitos à prática.</h2>
           </div>
           {moreHref && (
-            <Link href={moreHref} className="homeArticlesMoreLink">
-              Ver arquivo completo →
-            </Link>
+            <Button variant="ghost" href={moreHref} label="Ver arquivo completo →" className="homeArticlesMoreLink" />
           )}
         </div>
 
@@ -49,12 +48,14 @@ const HomeArticlesSection = ({ articles = [], moreHref }) => {
             )}
             <div className="homeArticlesFeaturedOverlay" aria-hidden="true" />
             <span className="homeArticlesFeaturedNum" aria-hidden="true">01</span>
-            <div className="homeArticlesFeaturedAccent" aria-hidden="true" />
-            <h3 className="homeArticlesFeaturedTitle">{featured.title}</h3>
-            {featured.description && (
-              <p className="homeArticlesFeaturedDesc">{featured.description}</p>
-            )}
-            <span className="homeArticlesFeaturedCta">Ler artigo →</span>
+            <div className="homeArticlesFeaturedBottom">
+              <div className="homeArticlesFeaturedAccent" aria-hidden="true" />
+              <h3 className="homeArticlesFeaturedTitle">{featured.title}</h3>
+              {featured.description && (
+                <p className="homeArticlesFeaturedDesc">{featured.description}</p>
+              )}
+              <span className="homeArticlesFeaturedCta">Ler artigo →</span>
+            </div>
           </Link>
 
           <div className="homeArticlesDivider" aria-hidden="true" />

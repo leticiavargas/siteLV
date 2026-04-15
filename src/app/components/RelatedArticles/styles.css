@@ -66,6 +66,17 @@
   transition: color 0.15s ease;
 }
 
+.relatedItemExcerpt {
+  font-size: 0.75rem;
+  color: var(--neutral-color-900);
+  opacity: 0.6;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .relatedItemTags {
   display: flex;
   flex-wrap: wrap;

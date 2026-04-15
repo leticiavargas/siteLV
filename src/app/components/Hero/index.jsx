@@ -2,7 +2,10 @@ import './styles.css';
 import { Button } from '../Button';
 import { HeroTyped } from './HeroTyped';
 
-const Hero = () => {
+const Hero = ({ featuredArticle }) => {
+  const publishedDate = featuredArticle?.publishedAt
+    ? new Date(featuredArticle.publishedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase()
+    : null;
   return (
     <section className='heroContainer'>
       <span className='heroBlob heroBlob--1' aria-hidden="true" />
@@ -44,24 +47,32 @@ const Hero = () => {
           </div>
         </div>
 
-        <aside className='heroFeaturedCard' aria-label="Artigo em destaque">
-          <span className='heroFeaturedCard__tag'>DESTAQUE</span>
-          <div className='heroFeaturedCard__divider' aria-hidden="true" />
-          <h2 className='heroFeaturedCard__title'>
-            Projeto em primeiro plano: acessibilidade no frontend
-          </h2>
-          <p className='heroFeaturedCard__body'>
-            Estudo aplicado com heurísticas de contraste, foco visível e navegação por teclado para ambientes de alta complexidade.
-          </p>
-          <footer className='heroFeaturedCard__footer'>
-            <span className='heroFeaturedCard__avatar' aria-hidden="true" />
-            <div className='heroFeaturedCard__meta'>
-              <span className='heroFeaturedCard__author'>leticia vargas</span>
-              <time className='heroFeaturedCard__date'>10 ABR 2026</time>
-            </div>
-            <span className='heroFeaturedCard__arrow' aria-hidden="true">&gt;</span>
-          </footer>
-        </aside>
+        {featuredArticle && (
+          <a
+            href={`/artigos/${featuredArticle.id}`}
+            className='heroFeaturedCard'
+            aria-label={`Artigo em destaque: ${featuredArticle.title}`}
+          >
+            <span className='heroFeaturedCard__tag'>DESTAQUE</span>
+            <div className='heroFeaturedCard__divider' aria-hidden="true" />
+            <h2 className='heroFeaturedCard__title'>{featuredArticle.title}</h2>
+            {featuredArticle.excerpt && (
+              <p className='heroFeaturedCard__body'>
+                {featuredArticle.excerpt.length > 120
+                  ? featuredArticle.excerpt.slice(0, featuredArticle.excerpt.lastIndexOf(' ', 120)) + '…'
+                  : featuredArticle.excerpt}
+              </p>
+            )}
+            <footer className='heroFeaturedCard__footer'>
+              <span className='heroFeaturedCard__avatar' aria-hidden="true" />
+              <div className='heroFeaturedCard__meta'>
+                <span className='heroFeaturedCard__author'>leticia vargas</span>
+                {publishedDate && <time className='heroFeaturedCard__date'>{publishedDate}</time>}
+              </div>
+              <span className='heroFeaturedCard__arrow' aria-hidden="true">&gt;</span>
+            </footer>
+          </a>
+        )}
       </div>
 
       {/* Code accents decorativos */}
