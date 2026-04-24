@@ -44,7 +44,9 @@
         }
 
         :hover::before,
-        :hover::after {
+        :hover::after,
+        :has(.navLink--active)::before,
+        :has(.navLink--active)::after {
           width: 10px;
           height: 10px;
           border-color: var(--secondary-color);
@@ -57,9 +59,14 @@
           position: relative;
           display: inline-block;
           transition: color 0.2s ease;
-          
+
           &:hover {
             color: var(--neutral-color-900);
+          }
+
+          &.navLink--active {
+            color: var(--secondary-color);
+            font-weight: var(--medium);
           }
         }
       }
@@ -89,7 +96,9 @@
   > nav ul li {
 
     :hover::before,
-    :hover::after {
+    :hover::after,
+    :has(.navLink--active)::before,
+    :has(.navLink--active)::after {
       width: 10px;
       height: 10px;
       border-color: var(--primary-color);
@@ -97,9 +106,14 @@
 
     a {
       color: color-mix(in srgb, var(--color-white) 85%, transparent);
-  
+
       &:hover {
         color: var(--color-white);
+      }
+
+      &.navLink--active {
+        color: hsl(from var(--primary-color) h s 64);
+        font-weight: var(--medium);
       }
     }
   }
@@ -124,6 +138,7 @@
 .headerLogo {
   width: 118px;
   height: auto;
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -187,6 +202,11 @@
 
       &:hover {
         color: var(--color-white);
+      }
+
+      &.navLink--active {
+        color: hsl(from var(--primary-color) h s 64);
+        font-weight: var(--medium);
       }
     }
 

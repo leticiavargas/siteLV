@@ -40,14 +40,16 @@ export default async function EditarProjeto({ params }) {
       <ProjectForm
         projectId={id}
         initialData={{
-          title: projeto.title,
-          description: projeto.description,
-          tags: projeto.tags,
-          liveHref: projeto.liveHref,
-          repoHref: projeto.repoHref,
-          imageUrl: projeto.imageUrl,
-          status: projeto.status,
-          visible: projeto.visible,
+          title: projeto.title ?? '',
+          description: projeto.description ?? '',
+          details: projeto.details ?? '',
+          tags: (projeto.tags ?? []).map(t => t.toLowerCase()),
+          iconName: projeto.iconName ?? '',
+          liveHref: projeto.liveHref ?? '',
+          repoHref: projeto.repoHref ?? '',
+          imageUrl: projeto.imageUrl ?? '',
+          status: projeto.status ?? 'draft',
+          visible: projeto.visible ?? true,
         }}
       />
     </>

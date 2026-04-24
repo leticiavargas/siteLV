@@ -11,7 +11,6 @@ const BASE = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
 
 async function req(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
-    cache: 'no-store',
     headers: { 'Content-Type': 'application/json' },
     ...options,
   });

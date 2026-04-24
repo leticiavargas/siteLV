@@ -31,7 +31,7 @@ export default async function MaterialDetalhe({ params }) {
     <>
       <Header />
       <main className='materialDetalhePage'>
-        <div className='materialDetalheHero'>
+        <section className='materialDetalheHero'>
           <div className='materialDetalheHeroInner'>
             <nav className='materialDetalheBreadcrumb' aria-label='Navegação'>
               <a href='/materiais'>Materiais</a>
@@ -58,9 +58,9 @@ export default async function MaterialDetalhe({ params }) {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className='materialDetalheBody'>
+        <section className='materialDetalheBody'>
           {material.content ? (
             <>
               <div
@@ -68,7 +68,7 @@ export default async function MaterialDetalhe({ params }) {
                 dangerouslySetInnerHTML={{ __html: material.content }}
               />
               {material.href && (
-                <div className='materialDetalheFonte'>
+                <footer className='materialDetalheFonte'>
                   <span className='material-symbols-outlined'>open_in_new</span>
                   <span>Recurso original:</span>
                   <a
@@ -78,11 +78,11 @@ export default async function MaterialDetalhe({ params }) {
                   >
                     {material.href}
                   </a>
-                </div>
+                </footer>
               )}
             </>
           ) : material.href ? (
-            <div className='materialDetalheExterno'>
+            <section className='materialDetalheExterno'>
               <p className='materialDetalheExternoTexto'>
                 Este material está hospedado em uma plataforma externa. Clique no botão abaixo para acessá-lo.
               </p>
@@ -95,11 +95,11 @@ export default async function MaterialDetalhe({ params }) {
                 <Icon iconName='open_in_new' />
                 Acessar material
               </a>
-            </div>
+            </section>
           ) : (
             <p className='materialDetalheVazio'>Conteúdo em breve.</p>
           )}
-        </div>
+        </section>
       </main>
       <Footer />
     </>

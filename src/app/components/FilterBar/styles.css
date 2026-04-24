@@ -1,64 +1,60 @@
 .filterBarContainer {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  margin: 2rem 5rem;
-  background-color: var(--neutral-color-200);
-  border-radius: 3rem;
-  overflow-x: auto;
-}
-
-.filterHash {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  background-color: var(--neutral-color-300);
-  font-size: 1rem;
-  font-weight: var(--bold);
-  color: var(--neutral-color-900);
-  flex-shrink: 0;
+  padding: 0 5rem;
+  margin: 2rem 0;
 }
 
 .filterList {
   display: flex;
-  gap: 0.375rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   list-style: none;
-  flex-wrap: nowrap;
 }
 
 .filterBtn {
-  padding: 0.5rem 1.125rem;
+  padding: 0.4375rem 1rem;
   border-radius: 2rem;
-  border: 2px solid transparent;
-  background-color: var(--primary-color);
-  color: var(--neutral-color-100);
+  border: 1.5px solid var(--neutral-color-300);
+  background-color: transparent;
+  color: var(--neutral-color-900);
   font-size: 0.875rem;
   font-weight: var(--medium);
   font-family: var(--font-inter);
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.2s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
 
   &:hover {
-    opacity: 0.8;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
   }
 }
 
 .filterBtn--active {
-  box-shadow: 0 0 0 2px var(--neutral-color-100), 0 0 0 4px var(--primary-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--color-white);
+
+  &:hover {
+    color: var(--color-white);
+    opacity: 0.85;
+  }
 }
 
-.filterBtn--plus {
-  padding: 0;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.125rem;
-  border-radius: 50%;
+.filterBtn--expand {
+  border-style: dashed;
+  color: color-mix(in srgb, var(--neutral-color-900) 55%, transparent);
+
+  &:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-style: dashed;
+  }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .filterBarContainer {
+    padding: 0 1.25rem;
+  }
 }

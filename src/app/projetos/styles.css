@@ -1,13 +1,54 @@
 .projetosSection {
-  padding: 3rem 5rem 5rem;
+  padding: 0 5rem 5rem;
   background-color: var(--neutral-color-100);
 }
 
+/* ── Cabeçalho de seção ─────────────────────────────────────── */
+
+.projetosHeader {
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.projetosHeaderText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.projetosTitle {
+  font-size: 1.75rem;
+  font-weight: var(--bold);
+  font-family: var(--font-fivo-sans);
+  color: var(--secondary-color);
+  line-height: 1;
+}
+
+.projetosSubtitle {
+  font-size: 0.875rem;
+  color: var(--neutral-color-900);
+  opacity: 0.6;
+}
+
+.projetosAccentLine {
+  display: block;
+  width: 3rem;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--primary-color);
+}
+
+/* ── Lista ──────────────────────────────────────────────────── */
+
 .projetosList {
   list-style: none;
-  max-width: 860px;
-  margin: 0 auto;
+  margin-top: 2rem;
 }
+
+/* ── Empty state ────────────────────────────────────────────── */
 
 .projetosEmpty {
   text-align: center;
@@ -17,8 +58,10 @@
   padding: 4rem 0;
 }
 
+/* ── Mobile ─────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .projetosSection {
-    padding: 2rem 1.25rem 3rem;
+    padding: 0 1.25rem 3rem;
   }
 }

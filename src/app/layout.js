@@ -20,6 +20,7 @@ const fivoSans = localFont({
     }
   ],
   variable: "--font-fivo-sans",
+  display: "swap",
 });
 
 const inter = Inter({

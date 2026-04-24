@@ -6,7 +6,7 @@ export function TagsInput({ value = [], onChange }) {
   const [input, setInput] = useState('');
 
   function addTag() {
-    const tag = input.trim();
+    const tag = input.trim().toLowerCase();
     if (tag && !value.includes(tag)) {
       onChange([...value, tag]);
     }

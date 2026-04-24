@@ -3,7 +3,7 @@ import { Button } from '../Button';
 
 const ArticleSidebar = ({ description, communityText, communityHref }) => {
   return (
-    <div className='articleSidebar'>
+    <aside className='articleSidebar'>
       <article className='articleSidebarAbout'>
         <div className='articleSidebarAboutTop'>
           <div className='articleSidebarPhoto' aria-hidden="true"></div>
@@ -15,12 +15,12 @@ const ArticleSidebar = ({ description, communityText, communityHref }) => {
         <p>{description}</p>
       </article>
 
-      <aside className='articleSidebarCommunity'>
+      <section className='articleSidebarCommunity'>
         <h2>Encontre outras pessoas com as mesmas dúvidas</h2>
         <p>{communityText}</p>
         <Button label="Clique aqui!" variant="primary" href={communityHref} />
-      </aside>
-    </div>
+      </section>
+    </aside>
   );
 };
 

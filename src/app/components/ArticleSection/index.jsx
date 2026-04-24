@@ -6,10 +6,10 @@ const ArticleSection = ({ articles = [], columns = 4, moreHref, title, subtitle 
   return (
     <section className='articleSection'>
       {title && (
-        <div className='articleSectionHeader'>
+        <header className='articleSectionHeader'>
           <h2 className='articleSectionTitle'>{title}</h2>
           {subtitle && <p className='articleSectionSubtitle'>{subtitle}</p>}
-        </div>
+        </header>
       )}
       <ul className='articleGrid' style={{ '--article-columns': columns }}>
         {articles.map((article, index) => (
@@ -30,9 +30,9 @@ const ArticleSection = ({ articles = [], columns = 4, moreHref, title, subtitle 
         ))}
       </ul>
       {moreHref && (
-        <div className='articleMore'>
+        <footer className='articleMore'>
           <Button label="Aprofundar nos artigos ..." variant="outline" href={moreHref} />
-        </div>
+        </footer>
       )}
     </section>
   );

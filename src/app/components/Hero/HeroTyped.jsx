@@ -41,8 +41,18 @@ const HeroTyped = () => {
     }
   }, [text, deleting, index]);
 
+  const isComplete = !deleting && text === topics[index];
+
   return (
-    <span aria-label={topics[index]}>
+    <span>
+      <span
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {isComplete ? topics[index] : ''}
+      </span>
       <span aria-hidden="true">{text}</span>
       <span className='heroTypedCursor' aria-hidden="true" />
     </span>

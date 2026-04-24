@@ -1,11 +1,15 @@
+export const revalidate = 3600;
+
+import Link from 'next/link';
 import { Header, Footer } from '../components';
 import { PageHero } from '../components/PageHero';
-import { AccordionItem } from '../components/AccordionItem';
 import { faqApi } from '@/lib/api';
 import './styles.css';
+import { AccordionList } from '../components/AccordionList';
 
-export default async function FAQ() {
-  const data = await faqApi.list({ perPage: 100, status: 'published', visible: true });
+export default async function FAQ({ searchParams }) {
+  const q = (await searchParams).q ?? '';
+  const data = await faqApi.list({ perPage: 100, status: 'published', visible: true, q });
   const questions = data.items;
 
   return (
@@ -13,25 +17,34 @@ export default async function FAQ() {
       <Header />
       <main>
         <PageHero
-          title="FAQ"
-          subtitle="Tem alguma dúvida? Talvez ela já tenha sido respondida aqui!"
-          searchPlaceholder="Procure por respostas"
+          title="TL;DR"
+          subtitle="Perguntas que eu já fiz, que já me fizeram e que a gente sempre esquece a resposta"
+          searchPlaceholder="o que está te travando hoje?"
         />
 
         <section className='faqCommonSection'>
-          <h2 className='faqCommonTitle'>Perguntas mais comuns</h2>
-          <ul className='faqCommonList'>
-            {questions.map(item => (
-              <li key={item.id}>
-                <AccordionItem question={item.question} answer={item.answer} />
-              </li>
-            ))}
-          </ul>
+          <h2 className='faqCommonTitle'>
+            {q ? `Resultados para "${q}"` : 'Guia de bolso'}
+          </h2>
+          {questions.length > 0 ? (
+            <AccordionList items={questions} />
+          ) : (
+            <p className='faqEmptyState'>Nenhuma pergunta encontrada para &ldquo;{q}&rdquo;.</p>
+          )}
         </section>
 
         <section className='faqNotFound'>
-          <h2 className='faqNotFoundTitle'>Não encontrou o que você procurava?</h2>
-          <p className='faqNotFoundText'>Entre em contato e envie sua pergunta</p>
+          <aside className='faqNotFoundSection'>
+            <h2 className='faqNotFoundTitle'>Ainda no escuro?</h2>
+            <p className='faqNotFoundText'>
+              Se a resposta que você buscava não está aqui, vamos desatar esse nó juntos. 
+              Nenhuma pergunta é pequena demais para ser explicada com clareza.
+            </p>
+          </aside>
+          <Link href='/sobre?ref=tldr#contato' className='faqNotFoundCta'>
+            Manda sua dúvida
+            <span className='material-symbols-outlined'>arrow_forward</span>
+          </Link>
         </section>
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { SeeAllLink } from '../SeeAllLink';
 import './styles.css';
-import { Button } from '../Button';
 
 function formatShortDate(isoString) {
   if (!isoString) return null;
@@ -25,15 +25,15 @@ const HomeArticlesSection = ({ articles = [], moreHref }) => {
         <span className="homeArticlesDecoWord" aria-hidden="true">artigos</span>
         <span className="homeArticlesDecoLabel" aria-hidden="true">BLOG · DEV · FRONTEND</span>
 
-        <div className="homeArticlesHeader">
+        <header className="homeArticlesHeader">
           <div className="homeArticlesHeaderLeft">
             <span className="homeArticlesEdition">{editionLabel()}</span>
             <h2 className="homeArticlesTitle">Dos conceitos à prática.</h2>
           </div>
           {moreHref && (
-            <Button variant="ghost" href={moreHref} label="Ver arquivo completo →" className="homeArticlesMoreLink" />
+            <SeeAllLink href={moreHref}>ver arquivo completo</SeeAllLink>
           )}
-        </div>
+        </header>
 
         <div className="homeArticlesContent">
           <Link href={featured.href} className="homeArticlesFeatured">
@@ -42,7 +42,7 @@ const HomeArticlesSection = ({ articles = [], moreHref }) => {
                 src={featured.imageUrl}
                 alt={featured.title}
                 fill
-                sizes="720px"
+                sizes="(max-width: 768px) 100vw, clamp(300px, 52vw, 720px)"
                 style={{ objectFit: 'cover' }}
               />
             )}
@@ -58,24 +58,21 @@ const HomeArticlesSection = ({ articles = [], moreHref }) => {
             </div>
           </Link>
 
-          <div className="homeArticlesDivider" aria-hidden="true" />
-
           <ul className="homeArticlesList">
             {listItems.map((article, i) => {
               const num = String(i + 2).padStart(2, '0');
               const date = formatShortDate(article.publishedAt);
-              const tag = article.tags?.[0];
+              const tags = article.tags;
               return (
                 <li key={i} className="homeArticlesItem">
                   <Link href={article.href} className="homeArticlesItemLink">
                     <span className="homeArticlesItemNum" aria-hidden="true">{num}</span>
                     <div className="homeArticlesItemContent">
                       <h3 className="homeArticlesItemTitle">{article.title}</h3>
-                      <div className="homeArticlesItemMeta">
-                        {tag && <span className="homeArticlesItemTag">{tag}</span>}
-                        {tag && date && <span className="homeArticlesItemDot" aria-hidden="true">·</span>}
-                        {date && <span className="homeArticlesItemDate">{date}</span>}
-                      </div>
+                      <ul className="homeArticlesListTags">
+                        {tags.map((tag) => <li key={tag} className="homeArticlesItemTag">{tag}</li>)}
+                      </ul>
+                      {date && <span className="homeArticlesItemDate">{date}</span>}
                     </div>
                   </Link>
                 </li>

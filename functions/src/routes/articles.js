@@ -1,5 +1,6 @@
 import { makeRouter } from './makeRouter.js';
-import { storage } from '../admin.js';
+import { db, storage } from '../admin.js';
+import { FieldValue } from 'firebase-admin/firestore';
 
 function filtrar(items, q) {
   return items.filter(
@@ -42,4 +43,19 @@ async function aoAtualizar(dadosAntigos, dadosNovos) {
   await Promise.all(orphans.map(p => bucket.file(p).delete({ ignoreNotFound: true })));
 }
 
-export default makeRouter('articles', filtrar, { aoExcluir, aoAtualizar });
+const router = makeRouter('articles', filtrar, { aoExcluir, aoAtualizar });
+
+router.post('/:id/clap', async (req, res) => {
+  try {
+    const { claps = 1 } = req.body;
+    const amount = Math.min(Math.max(parseInt(claps, 10) || 1, 1), 10);
+    const ref = db.collection('articles').doc(req.params.id);
+    await ref.update({ claps: FieldValue.increment(amount) });
+    const snap = await ref.get();
+    res.json({ claps: snap.data()?.claps ?? amount });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+export default router;

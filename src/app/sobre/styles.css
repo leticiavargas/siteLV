@@ -1,6 +1,6 @@
-/* ── SOBRE ──────────────────────────────────────────────────────────── */
+/* ── ABOUT ───────────────────────────────────────────────────────────── */
 
-.sobreSection {
+.aboutSection {
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -8,21 +8,38 @@
   background-color: var(--neutral-color-100);
 }
 
-.sobreContent {
+.aboutContent {
   display: flex;
   gap: 3rem;
   align-items: flex-start;
 }
 
-.sobreFoto {
-  width: 220px;
-  height: 220px;
-  border-radius: 1rem;
-  background-color: var(--neutral-color-300);
+.aboutPhoto {
+  position: relative;
+  width: 170px;
+  height: 200px;
   flex-shrink: 0;
 }
 
-.sobreTexto {
+.aboutPhotoAccent {
+  position: absolute;
+  inset: -10px 10px 10px -10px;
+  border-radius: 20px;
+  border: 2px solid color-mix(in srgb, var(--primary-color) 25%, transparent);
+  pointer-events: none;
+}
+
+.aboutPhotoImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 20px;
+}
+
+.aboutText {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -31,10 +48,22 @@
     font-size: 1rem;
     line-height: 1.75;
     color: var(--neutral-color-900);
+
+    span {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+  }
+
+  code {
+    font-family: var(--font-ibm-plex-mono);
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    opacity: 0.75;
   }
 }
 
-.sobreTitulo {
+.aboutTitle {
   font-size: 2.25rem;
   font-family: var(--font-fivo-sans);
   font-weight: var(--regular);
@@ -46,13 +75,13 @@
   }
 }
 
-.sobreHabilidades {
+.aboutSkills {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.sobreHabilidadesTitulo {
+.aboutSkillsTitle {
   font-size: 1rem;
   font-weight: var(--bold);
   color: var(--neutral-color-900);
@@ -61,14 +90,14 @@
   opacity: 0.5;
 }
 
-.sobreHabilidadesList {
+.aboutSkillsList {
   display: flex;
   flex-wrap: wrap;
   gap: 0.625rem;
   list-style: none;
 }
 
-.sobreHabilidadeItem {
+.aboutSkillsItem {
   padding: 0.375rem 1rem;
   border-radius: 2rem;
   border: 2px solid var(--primary-color);
@@ -77,9 +106,9 @@
   font-weight: var(--medium);
 }
 
-/* ── CONTATO ────────────────────────────────────────────────────────── */
+/* ── CONTACT ─────────────────────────────────────────────────────────── */
 
-.contatoSection {
+.contactSection {
   padding: 4rem 5rem;
   background:
     linear-gradient(
@@ -91,20 +120,20 @@
     var(--primary-color);
 }
 
-.contatoContent {
+.contactContent {
   display: flex;
   gap: 4rem;
   align-items: flex-start;
 }
 
-.contatoTexto {
+.contactText {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   flex: 1;
 }
 
-.contatoTitulo {
+.contactTitle {
   font-size: 2.5rem;
   font-weight: var(--bold);
   font-family: var(--font-fivo-sans);
@@ -112,21 +141,21 @@
   line-height: 1.1;
 }
 
-.contatoSubtitulo {
+.contactSubtitle {
   font-size: 1rem;
   color: color-mix(in srgb, var(--neutral-color-100) 85%, transparent);
   line-height: 1.6;
   max-width: 340px;
 }
 
-.contatoLinks {
+.contactLinks {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   list-style: none;
 }
 
-.contatoLink {
+.contactLink {
   display: flex;
   align-items: center;
   gap: 0.625rem;
@@ -140,8 +169,7 @@
   }
 }
 
-/* Formulário */
-.contatoForm {
+.contactFormCard {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -152,122 +180,29 @@
   padding: 2rem;
 }
 
-.contatoFormGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-
-  label {
-    font-size: 0.8125rem;
-    font-weight: var(--medium);
-    color: color-mix(in srgb, var(--neutral-color-100) 80%, transparent);
-  }
-
-  input,
-  textarea {
-    border: 1px solid color-mix(in srgb, var(--color-white) 25%, transparent);
-    border-radius: 0.5rem;
-    padding: 0.625rem 0.875rem;
-    font-size: 0.9rem;
-    font-family: var(--font-inter);
-    background-color: color-mix(in srgb, var(--color-white) 8%, transparent);
-    color: var(--neutral-color-100);
-    outline: none;
-    transition: border-color 0.2s ease;
-    resize: none;
-
-    &::placeholder {
-      color: color-mix(in srgb, var(--neutral-color-100) 40%, transparent);
-    }
-
-    &:focus {
-      border-color: color-mix(in srgb, var(--color-white) 55%, transparent);
-    }
-  }
-}
-
-.contatoBtn {
-  align-self: flex-start;
-  padding: 0.625rem 1.75rem;
-  border-radius: 2rem;
-  border: 2px solid var(--neutral-color-100);
-  background-color: var(--neutral-color-100);
-  color: var(--primary-color);
-  font-size: 0.875rem;
-  font-weight: var(--bold);
-  font-family: var(--font-inter);
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-
-  &:hover:not(:disabled) {
-    opacity: 0.9;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-}
-
-.contatoFormErro {
-  padding: 0.625rem 0.875rem;
-  border-radius: 0.5rem;
-  background-color: color-mix(in srgb, #e53e3e 15%, transparent);
-  border: 1px solid color-mix(in srgb, #e53e3e 30%, transparent);
-  color: #fed7d7;
-  font-size: 0.875rem;
-}
-
-.contatoFormSucesso {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  text-align: center;
-  min-height: 16rem;
-}
-
-.contatoFormSucessoIcon {
-  font-size: 3rem;
-  color: color-mix(in srgb, var(--neutral-color-100) 80%, transparent);
-}
-
-.contatoFormSucessoTitulo {
-  font-size: 1.25rem;
-  font-weight: var(--bold);
-  color: var(--neutral-color-100);
-}
-
-.contatoFormSucessoTexto {
-  font-size: 0.9rem;
-  color: color-mix(in srgb, var(--neutral-color-100) 75%, transparent);
-}
-
 @media (max-width: 768px) {
-  .sobreSection {
+  .aboutSection {
     padding: 2.5rem 1.25rem;
   }
 
-  .sobreContent {
+  .aboutContent {
     flex-direction: column;
   }
 
-  .sobreFoto {
-    width: 100%;
-    max-width: 220px;
-    height: 220px;
+  .aboutPhoto {
+    width: 140px;
+    height: 165px;
   }
 
-  .contatoSection {
+  .contactSection {
     padding: 2.5rem 1.25rem;
   }
 
-  .contatoContent {
+  .contactContent {
     flex-direction: column;
   }
 
-  .contatoTitulo {
+  .contactTitle {
     font-size: 1.75rem;
   }
 }

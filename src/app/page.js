@@ -1,3 +1,5 @@
+export const revalidate = 1800;
+
 import {
   Header,
   Hero,
@@ -56,6 +58,7 @@ export default async function Home() {
   const featuredArticle = featuredData.items[0] ?? null;
 
   const projects = projectsData.items.map(p => ({
+    id: p.id,
     title: p.title,
     description: p.description,
     tags: p.tags ?? [],

@@ -41,10 +41,10 @@ const Hero = ({ featuredArticle }) => {
             Um hub de conteúdos para quem quer entender o &apos;porquê&apos; antes do &apos;como&apos; (ou só está perdido mesmo).
           </p>
 
-          <div className='heroCtas'>
+          <nav className='heroCtas' aria-label="Ações principais">
             <Button label="Explorar artigos →" variant="primary" href="/artigos" />
             <Button label="Sobre mim" variant="outline" href="/sobre" />
-          </div>
+          </nav>
         </div>
 
         {featuredArticle && (
@@ -54,6 +54,11 @@ const Hero = ({ featuredArticle }) => {
             aria-label={`Artigo em destaque: ${featuredArticle.title}`}
           >
             <span className='heroFeaturedCard__tag'>DESTAQUE</span>
+            {featuredArticle.imageUrl && (
+              <div className='heroFeaturedCard__image'>
+                <img src={featuredArticle.imageUrl} alt="" />
+              </div>
+            )}
             <div className='heroFeaturedCard__divider' aria-hidden="true" />
             <h2 className='heroFeaturedCard__title'>{featuredArticle.title}</h2>
             {featuredArticle.excerpt && (
@@ -77,9 +82,9 @@ const Hero = ({ featuredArticle }) => {
 
       {/* Code accents decorativos */}
       <div className='heroCodeAccents' aria-hidden="true">
-        <span>{'<div className="hero">'}</span>
-        <span>{'  const [ready, setReady] = useState(true);'}</span>
-        <span>{'</div>'}</span>
+        <span aria-hidden="true">{'<div className="hero">'}</span>
+        <span aria-hidden="true">{'  const [ready, setReady] = useState(true);'}</span>
+        <span aria-hidden="true">{'</div>'}</span>
       </div>
     </section>
   );

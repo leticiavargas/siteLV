@@ -19,6 +19,8 @@ const RelatedArticleItem = ({ title, excerpt, tags = [], href = '#' }) => (
 );
 
 const RelatedArticles = ({ articles = [] }) => {
+  if (articles.length === 0) return null;
+
   return (
     <aside className='relatedArticles'>
       <h2 className='relatedTitle'>Você também pode gostar</h2>

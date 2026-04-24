@@ -175,6 +175,11 @@
   flex-shrink: 0;
 }
 
+.articleFormIconWrapper .articleFormInput {
+  flex: 1;
+  min-width: 0;
+}
+
 .articleFormHint {
   font-size: 0.75rem;
   color: var(--neutral-color-900);

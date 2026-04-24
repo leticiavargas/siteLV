@@ -222,3 +222,26 @@
     opacity: 0.6;
   }
 }
+
+/* ── Ícone ───────────────────────────────────────────────────── */
+
+.projectFormIconWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.projectFormIconPreview {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.projectFormIconWrapper .projectFormInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.projectFormHintLink {
+  color: var(--primary-color);
+}

@@ -12,6 +12,7 @@ const EMPTY_FORM = {
   description: '',
   details: '',
   tags: [],
+  iconName: '',
   liveHref: '',
   repoHref: '',
   imageUrl: '',
@@ -145,6 +146,37 @@ export function ProjectForm({ projectId, initialData }) {
               <option value="draft">Rascunho</option>
               <option value="published">Publicado</option>
             </select>
+          </div>
+
+          <div className="projectFormGroup">
+            <label htmlFor="iconName" className="projectFormLabel">Ícone</label>
+            <div className="projectFormIconWrapper">
+              {form.iconName && (
+                <span className="material-symbols-outlined projectFormIconPreview">
+                  {form.iconName}
+                </span>
+              )}
+              <input
+                id="iconName"
+                type="text"
+                className="projectFormInput"
+                value={form.iconName}
+                onChange={e => setField('iconName', e.target.value)}
+                placeholder="Ex: rocket_launch, code, terminal"
+              />
+            </div>
+            <p className="projectFormHint">
+              Nome do ícone do{' '}
+              <a
+                href="https://fonts.google.com/icons"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="projectFormHintLink"
+              >
+                Material Symbols
+              </a>
+              . Exibido no círculo da listagem.
+            </p>
           </div>
 
           <div className="projectFormGroup">

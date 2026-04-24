@@ -126,6 +126,11 @@
   flex-shrink: 0;
 }
 
+.materialItemFormIconWrapper .materialItemFormInput {
+  flex: 1;
+  min-width: 0;
+}
+
 /* ── Actions ─────────────────────────────────────────────────── */
 
 .materialItemFormActions {

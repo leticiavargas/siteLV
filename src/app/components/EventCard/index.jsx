@@ -10,16 +10,16 @@ const EventCard = ({ image, title, date, href, formato, vou }) => {
   const content = (
     <>
       {(formato || vou) && (
-        <div className='eventCardBadges'>
+        <ul className='eventCardBadges'>
           {formato && (
-            <span className={`eventCardBadge eventCardBadge--${formato}`}>
+            <li className={`eventCardBadge eventCardBadge--${formato}`}>
               {FORMATO_LABEL[formato]}
-            </span>
+            </li>
           )}
           {vou && (
-            <span className='eventCardBadge eventCardBadge--vou'>Vou!</span>
+            <li className='eventCardBadge eventCardBadge--vou'>Vou!</li>
           )}
-        </div>
+        </ul>
       )}
       <p className='eventCardTitle'>{title}</p>
       {date && <time className='eventCardDate'>{date}</time>}
@@ -30,6 +30,7 @@ const EventCard = ({ image, title, date, href, formato, vou }) => {
     <article
       className='eventCard'
       style={{ backgroundImage: `url(${image})` }}
+      aria-label={title}
     >
       <div className='eventCardOverlay'>
         {href

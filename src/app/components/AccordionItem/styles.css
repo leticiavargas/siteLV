@@ -1,5 +1,4 @@
 .accordionItem {
-  border-bottom: 1px solid var(--neutral-color-300);
   padding: 1rem 0;
 
   &[open] .accordionQuestion::after {
@@ -10,28 +9,95 @@
 .accordionQuestion {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   font-size: 1rem;
   font-weight: var(--medium);
   color: var(--neutral-color-900);
   cursor: pointer;
   list-style: none;
+  position: relative;
+  padding-left: 1rem;
 
   &::-webkit-details-marker {
     display: none;
   }
 
+  &::before {
+    content: '// ';
+    color: var(--primary-color);
+    font-weight: var(--regular);
+    flex-shrink: 0;
+    position: absolute;
+    left: -0.2rem;
+  }
+
   &::after {
-    content: '▾';
+    content: '+';
     font-size: 1rem;
     color: var(--primary-color);
     transition: transform 0.2s ease;
   }
 }
 
+
+details[open] .accordionQuestion::after {
+  content: '−';
+}
+
+.accordionBody {
+  overflow: hidden;
+}
+
 .accordionAnswer {
-  margin-top: 0.75rem;
-  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
   color: var(--neutral-color-900);
   line-height: 1.6;
+  border-top: 1px solid var(--primary-color);
+  padding-top: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordionBody {
+    transition: none;
+  }
+}
+
+.accordionLinks {
+  margin-top: 0.75rem;
+  padding-bottom: 0.25rem;
+
+  &::before {
+    content: 'Links complementares';
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: var(--medium);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--neutral-color-300);
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  a {
+    font-size: 0.75rem;
+    font-weight: var(--medium);
+    color: var(--primary-color);
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--primary-color) 35%, transparent);
+    border-radius: 2rem;
+    padding: 0.25rem 0.75rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--color-white);
+    }
+  }
 }

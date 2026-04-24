@@ -342,6 +342,8 @@ const GameEaster = () => {
         return;
       }
       if (e.code !== 'Space' && e.code !== 'ArrowUp') return;
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
       e.preventDefault();
 
       const state = gameStateRef.current;

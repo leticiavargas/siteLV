@@ -11,6 +11,8 @@ const NAV_ITEMS = [
   { label: 'Usuários', href: '/admin/usuarios', icon: 'manage_accounts' },
 ];
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Admin — Letícia Vargas',
 };

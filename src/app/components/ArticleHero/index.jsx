@@ -5,6 +5,26 @@ import { Icon } from '../Icon';
 const ArticleHero = ({ tags = [], title, lead, authorName, authorDate, readTime }) => {
   return (
     <header className='articleHero'>
+      {/* Decorações geométricas */}
+      <div className='articleHeroDotGrid' aria-hidden="true">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <span key={i} className='articleHeroDotGrid__dot' />
+        ))}
+      </div>
+      <span className='articleHeroAccentLine articleHeroAccentLine--1' aria-hidden="true" />
+      <span className='articleHeroAccentLine articleHeroAccentLine--2' aria-hidden="true" />
+      <div className='articleHeroCrossAccent' aria-hidden="true">
+        <span className='articleHeroCrossAccent__h' />
+        <span className='articleHeroCrossAccent__v' />
+      </div>
+
+      {/* Code accents decorativos */}
+      <div className='articleHeroCodeAccents' aria-hidden="true">
+        <span>{'// artigo.jsx'}</span>
+        <span>{'<Article author="leticia vargas"'}</span>
+        <span>{'  publishedAt={article.publishedAt} />'}</span>
+      </div>
+
       <div className='articleHeroInner'>
         <ul className='articleHeroTags'>
           {tags.map((tag) => (

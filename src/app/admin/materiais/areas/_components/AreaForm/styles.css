@@ -163,6 +163,11 @@
   flex-shrink: 0;
 }
 
+.areaFormIconWrapper .areaFormInput {
+  flex: 1;
+  min-width: 0;
+}
+
 /* ── Actions ─────────────────────────────────────────────────── */
 
 .areaFormActions {

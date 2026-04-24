@@ -1,3 +1,4 @@
+import { SeeAllLink } from '../SeeAllLink';
 import './styles.css';
 
 const MONTHS = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
@@ -26,7 +27,7 @@ const EventsSection = ({ events = [] }) => {
     <section className="eventsSection">
       <header className="eventsSectionHeader">
         <p className="eventsSectionLabel">AGENDA TECH</p>
-        <a href="/eventos" className="eventsSeeAll">Ver lista completa ↗</a>
+        <SeeAllLink href="/eventos">ver lista completa</SeeAllLink>
       </header>
 
       <div className="eventsRhythmBars" aria-hidden="true">

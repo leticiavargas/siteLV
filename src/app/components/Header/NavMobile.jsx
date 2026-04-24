@@ -1,10 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { NAV_ITEMS } from './NavLinks';
 
 const NavMobile = () => {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const pathname = usePathname();
+
+  const isActive = (href) =>
+    href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
     <div className="navMobileWrapper">
@@ -25,11 +31,13 @@ const NavMobile = () => {
           <div className="navMobileOverlay" onClick={close} aria-hidden="true" />
           <nav id="navMobileMenu" className="navMobileMenu" aria-label="Menu mobile">
             <ul>
-              <li><a href="/" onClick={close}>Início</a></li>
-              <li><a href="/artigos" onClick={close}>Artigos</a></li>
-              <li><a href="/projetos" onClick={close}>Projetos</a></li>
-              <li><a href="/materiais" onClick={close}>Materiais</a></li>
-              <li><a href="/sobre" onClick={close}>Sobre</a></li>
+              {NAV_ITEMS.map(({ href, label }) => (
+                <li key={href}>
+                  <a href={href} onClick={close} className={isActive(href) ? 'navLink--active' : ''}>
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
         </>

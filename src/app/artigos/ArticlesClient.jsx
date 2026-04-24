@@ -1,9 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { FilterBar } from '../components/FilterBar';
-import { Card } from '../components/card';
 import './styles.css';
+
+// Em produção: 10. Reduzido para 2 para testes enquanto há poucos artigos.
+const PAGE_SIZE = 8;
 
 function formatDate(isoString) {
   if (!isoString) return null;
@@ -11,79 +14,121 @@ function formatDate(isoString) {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
-  });
+  }).toUpperCase();
 }
 
+const ArticleListItem = ({ title, excerpt, tags = [], href, publishedAt, iconName, isLast }) => {
+  const date = formatDate(publishedAt);
+
+  return (
+    <li className={`articleItem${isLast ? ' articleItem--last' : ''}`}>
+      <div className='articleItemIcon' aria-hidden="true">
+        <span className='articleItemIconCircle'>
+          <span className='material-symbols-outlined'>{iconName || 'article'}</span>
+        </span>
+        {!isLast && <span className='articleItemLine' />}
+      </div>
+
+      <div className='articleItemContent'>
+        <div className='articleItemMeta'>
+          {date && <time className='articleItemDate' dateTime={publishedAt}>{date}</time>}
+          {date && tags.length > 0 && <span className='articleItemDot' aria-hidden="true">·</span>}
+          {tags.length > 0 && (
+            <ul className='articleItemTags'>
+              {tags.map(tag => (
+                <li key={tag}>
+                  <span className='articleItemTag'>{tag}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <h2 className='articleItemTitle'>
+          <a href={href}>{title}</a>
+        </h2>
+
+        {excerpt && <p className='articleItemExcerpt'>{excerpt}</p>}
+
+        <a href={href} className='articleItemCta' tabIndex={-1} aria-hidden="true">
+          Ler artigo →
+        </a>
+
+        <span className='articleItemSeparator' aria-hidden="true" />
+      </div>
+    </li>
+  );
+};
+
 const ArticlesClient = ({ articles }) => {
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q')?.trim().toLowerCase() ?? '';
+
   const [activeTag, setActiveTag] = useState('Todas');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const allTags = ['Todas', ...new Set(articles.flatMap(a => a.tags ?? []))];
 
-  const filtered = activeTag === 'Todas'
-    ? articles
-    : articles.filter(a => a.tags?.includes(activeTag));
+  const filtered = articles.filter(a => {
+    const matchesTag = activeTag === 'Todas' || a.tags?.includes(activeTag);
+    const matchesSearch = !q
+      || a.title?.toLowerCase().includes(q)
+      || a.excerpt?.toLowerCase().includes(q);
+    return matchesTag && matchesSearch;
+  });
 
-  const [featured, ...rest] = filtered;
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  function handleTagSelect(tag) {
+    setActiveTag(tag);
+    setVisibleCount(PAGE_SIZE);
+  }
 
   return (
     <div className='artigosContent'>
-      <FilterBar tags={allTags} activeTag={activeTag} onSelect={setActiveTag} />
+      <div className='artigosHeader'>
+        <div className='artigosHeaderText'>
+          <h2 className='artigosTitle'>Últimos artigos</h2>
+          <p className='artigosSubtitle'>Conteúdo sobre desenvolvimento, carreira e tecnologia</p>
+        </div>
+        <span className='artigosAccentLine' aria-hidden="true" />
+      </div>
 
-      {featured && (
-        <article className='artigosFeatured animate-on-scroll'>
-          {featured.imageUrl && (
-            <div className='artigosFeaturedImage'>
-              <img src={featured.imageUrl} alt={featured.title} />
-            </div>
-          )}
-          <div className={`artigosFeaturedInner${featured.imageUrl ? ' artigosFeaturedInner--withImage' : ''}`}>
-            <div className='artigosFeaturedMeta'>
-              {featured.tags?.[0] && (
-                <span className='artigosFeaturedTag'>{featured.tags[0]}</span>
-              )}
-              {featured.publishedAt && (
-                <time className='artigosFeaturedDate' dateTime={featured.publishedAt}>
-                  {formatDate(featured.publishedAt)}
-                </time>
-              )}
-            </div>
-            <h2 className='artigosFeaturedTitle'>
-              <a href={`/artigos/${featured.id}`}>{featured.title}</a>
-            </h2>
-            {featured.excerpt && (
-              <p className='artigosFeaturedExcerpt'>{featured.excerpt}</p>
-            )}
-            <a href={`/artigos/${featured.id}`} className='artigosFeaturedCta' tabIndex={-1} aria-hidden="true">
-              Ler artigo <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </article>
-      )}
+      <FilterBar tags={allTags} activeTag={activeTag} onSelect={handleTagSelect} />
 
-      {rest.length > 0 && (
-        <ul className='artigosGrid'>
-          {rest.map((article, index) => (
-            <li
+      {visible.length > 0 ? (
+        <ul className='artigosList' aria-live="polite" aria-atomic="false">
+          {visible.map((article, index) => (
+            <ArticleListItem
               key={article.id}
-              className='animate-on-scroll'
-              style={{ transitionDelay: `${index * 60}ms` }}
-            >
-              <Card
-                title={article.title}
-                description={article.excerpt}
-                tags={article.tags ?? []}
-                href={`/artigos/${article.id}`}
-                iconName={article.iconName}
-                imageUrl={article.imageUrl ?? null}
-                publishedAt={article.publishedAt ?? null}
-              />
-            </li>
+              title={article.title}
+              excerpt={article.excerpt}
+              tags={article.tags ?? []}
+              href={`/artigos/${article.id}`}
+              publishedAt={article.publishedAt ?? null}
+              iconName={article.iconName ?? ''}
+              isLast={index === visible.length - 1}
+            />
           ))}
         </ul>
+      ) : (
+        <p className='artigosEmpty'>
+          {q
+            ? `Nenhum artigo encontrado para "${q}".`
+            : 'Nenhum artigo encontrado para esta tag.'}
+        </p>
       )}
 
-      {filtered.length === 0 && (
-        <p className='artigosEmpty'>Nenhum artigo encontrado para esta tag.</p>
+      {hasMore && (
+        <div className='artigosLoadMore'>
+          <button
+            className='artigosLoadMoreBtn'
+            onClick={() => setVisibleCount(v => v + PAGE_SIZE)}
+          >
+            Carregar mais artigos
+          </button>
+        </div>
       )}
     </div>
   );

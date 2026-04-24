@@ -19,7 +19,7 @@ const Card = ({ title, description, tags = [], href, iconName, imageUrl, publish
     <article className='cardContainer'>
       {imageUrl ? (
         <div className='cardThumb'>
-          <img src={imageUrl} alt="" aria-hidden="true" />
+          <img src={imageUrl} alt="" />
         </div>
       ) : (
         <div className='cardBall'>
@@ -31,7 +31,7 @@ const Card = ({ title, description, tags = [], href, iconName, imageUrl, publish
       </h2>
       <p className='cardDescription'>{description}</p>
 
-      <div className='cardFooter'>
+      <footer className='cardFooter'>
         {tags.length > 0 && (
           <ul className='cardTags'>
             {tags.map((tag) => (
@@ -44,7 +44,7 @@ const Card = ({ title, description, tags = [], href, iconName, imageUrl, publish
         {dataFormatada && (
           <time className='cardDate' dateTime={publishedAt}>{dataFormatada}</time>
         )}
-      </div>
+      </footer>
     </article>
   );
 }

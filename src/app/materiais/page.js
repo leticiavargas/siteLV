@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import { Header, Footer } from '../components';
 import { CategorySection } from '../components/CategorySection';
 import { PageHero } from '../components/PageHero';

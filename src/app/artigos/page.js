@@ -1,6 +1,8 @@
+export const revalidate = 1800;
+
+import { Suspense } from 'react';
 import { Header, Footer } from '../components';
 import { PageHero } from '../components/PageHero';
-import { PageAnimations } from '../components/PageAnimations';
 import { ArticlesClient } from './ArticlesClient';
 import { articlesApi } from '@/lib/api';
 import './styles.css';
@@ -14,10 +16,12 @@ export default async function Artigos() {
       <PageHero
         title="Artigos"
         subtitle="Textos sobre desenvolvimento web, frontend e tudo que aprendo no caminho."
+        searchPlaceholder="Buscar artigos..."
       />
       <main>
-        <PageAnimations />
-        <ArticlesClient articles={articles} />
+        <Suspense>
+          <ArticlesClient articles={articles} />
+        </Suspense>
       </main>
       <Footer />
     </>

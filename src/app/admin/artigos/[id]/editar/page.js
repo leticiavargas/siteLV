@@ -40,12 +40,15 @@ export default async function EditarArtigo({ params }) {
       <ArticleForm
         artigoId={id}
         initialData={{
-          title: artigo.title,
-          excerpt: artigo.excerpt,
-          content: artigo.content,
-          tags: artigo.tags,
-          status: artigo.status,
-          visible: artigo.visible,
+          title: artigo.title ?? '',
+          excerpt: artigo.excerpt ?? '',
+          content: artigo.content ?? '',
+          tags: (artigo.tags ?? []).map(t => t.toLowerCase()),
+          iconName: artigo.iconName ?? '',
+          imageUrl: artigo.imageUrl ?? '',
+          status: artigo.status ?? 'draft',
+          visible: artigo.visible ?? true,
+          featured: artigo.featured ?? false,
           publishedAt: artigo.publishedAt ?? null,
         }}
       />
