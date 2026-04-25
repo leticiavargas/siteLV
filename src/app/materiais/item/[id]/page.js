@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { notFound } from 'next/navigation';
 import { Header, Footer } from '../../../components';
 import { Tag } from '../../../components/tag';

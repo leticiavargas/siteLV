@@ -1,4 +1,5 @@
 export const revalidate = 1800;
+export const dynamic = 'force-dynamic';
 
 import {
   Header,

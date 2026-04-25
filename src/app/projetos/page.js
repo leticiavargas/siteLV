@@ -1,4 +1,5 @@
 export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 import { Header, Footer } from '../components';
 import { PageHero } from '../components/PageHero';
