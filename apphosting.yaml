@@ -1,0 +1,14 @@
+runConfig:
+  runtime: nodejs22
+
+env:
+  - variable: NEXT_PUBLIC_API_URL
+    value: https://us-central1-leticiavargassite.cloudfunctions.net/api
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: API_URL
+    value: https://us-central1-leticiavargassite.cloudfunctions.net/api
+    availability:
+      - BUILD
+      - RUNTIME
