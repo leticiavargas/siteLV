@@ -5,10 +5,7 @@ import { MaterialCard } from '../../components/MaterialCard';
 import { areasApi, materialItemsApi } from '@/lib/api';
 import './styles.css';
 
-export async function generateStaticParams() {
-  const data = await areasApi.list({ status: 'published', visible: true, perPage: 100 });
-  return data.items.map(area => ({ slug: area.slug }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function MaterialAreaPage({ params }) {
   const { slug } = await params;
