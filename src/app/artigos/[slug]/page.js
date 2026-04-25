@@ -1,4 +1,5 @@
 export const revalidate = 1800;
+export const dynamic = 'force-dynamic';
 
 import { Header, Footer } from '../../components';
 import { ArticleHero } from '../../components/ArticleHero';
@@ -8,11 +9,6 @@ import { ShareButton } from './ShareButton';
 import { ClapButton } from './ClapButton';
 import { articlesApi } from '@/lib/api';
 import './styles.css';
-
-export async function generateStaticParams() {
-  const data = await articlesApi.list({ status: 'published', perPage: 100 });
-  return data.items.map(a => ({ slug: a.id }));
-}
 
 function getRelatedArticles(allArticles, currentId, currentTags = []) {
   const others = allArticles.filter(a => a.id !== currentId);
