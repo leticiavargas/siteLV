@@ -8,7 +8,7 @@ env:
       - BUILD
       - RUNTIME
   - variable: API_URL
-    value: https://us-central1-leticiavargassite.cloudfunctions.net/api
+    value: https://api-3ypiwto3va-uc.a.run.app
     availability:
       - BUILD
       - RUNTIME
