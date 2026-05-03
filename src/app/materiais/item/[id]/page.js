@@ -20,6 +20,10 @@ export default async function MaterialDetalhe({ params }) {
     notFound();
   }
 
+  const updatedDate = material.updatedAt && material.publishedAt && material.updatedAt > material.publishedAt
+    ? new Date(material.updatedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
+    : null;
+
   let area = null;
   try {
     const areasData = await areasApi.list({ perPage: 100 });
@@ -30,7 +34,7 @@ export default async function MaterialDetalhe({ params }) {
 
   return (
     <>
-      <Header />
+      <Header variant="dark" logo="white" />
       <main className='materialDetalhePage'>
         <section className='materialDetalheHero'>
           <div className='materialDetalheHeroInner'>
@@ -56,6 +60,9 @@ export default async function MaterialDetalhe({ params }) {
                 {material.description && (
                   <p className='materialDetalheDescricao'>{material.description}</p>
                 )}
+                {updatedDate && (
+                  <p className='materialDetalheAtualizado'>Atualizado em {updatedDate}</p>
+                )}
               </div>
             </div>
           </div>
@@ -76,6 +83,8 @@ export default async function MaterialDetalhe({ params }) {
                     href={material.href}
                     target='_blank'
                     rel='noopener noreferrer'
+                    data-material-title={material.title}
+                    data-material-type={material.type}
                   >
                     {material.href}
                   </a>
@@ -92,6 +101,8 @@ export default async function MaterialDetalhe({ params }) {
                 className='materialDetalheExternoBtn'
                 target='_blank'
                 rel='noopener noreferrer'
+                data-material-title={material.title}
+                data-material-type={material.type}
               >
                 <Icon iconName='open_in_new' />
                 Acessar material

@@ -12,10 +12,6 @@ const PageHero = ({ title, subtitle, searchPlaceholder }) => {
       </div>
       <span className='pageHeroAccentLine pageHeroAccentLine--1' aria-hidden="true" />
       <span className='pageHeroAccentLine pageHeroAccentLine--2' aria-hidden="true" />
-      <div className='pageHeroCrossAccent' aria-hidden="true">
-        <span className='pageHeroCrossAccent__h' />
-        <span className='pageHeroCrossAccent__v' />
-      </div>
 
       {/* Code accents decorativos */}
       <div className='pageHeroCodeAccents' aria-hidden="true">

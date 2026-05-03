@@ -46,14 +46,14 @@ const EventsSection = ({ events = [] }) => {
             const subtitle = buildSubtitle(event.format, event.location);
 
             return (
-              <li key={event.href ?? i} className={`eventsAgendaRow eventsAgendaRow--${rowVariant}`}>
+              <li key={event.id ?? event.href ?? i} className={`eventsAgendaRow eventsAgendaRow--${rowVariant}`}>
                 <div className="eventsAgendaLeft">
                   <span className={`eventsDateBadge${event.attending ? ' eventsDateBadge--attending' : ''}`}>
                     {formatAgendaDate(event.rawDate)}
                   </span>
                   <div className="eventsAgendaInfo">
                     <div className="eventsAgendaNameRow">
-                      <span className="eventsAgendaName">{event.title}</span>
+                      <a href={`/eventos/${event.id}`} className="eventsAgendaName">{event.title}</a>
                       {event.attending && (
                         <span className="eventsAttendingBadge">vou</span>
                       )}

@@ -15,8 +15,11 @@ const EMPTY_FORM = {
   href: '',
   imageUrl: '',
   attending: false,
+  role: 'attendee',
+  talkTitle: '',
+  materialsHref: '',
   status: 'draft',
-  visible: true,
+  visible: false,
 };
 
 export function EventForm({ eventId, initialData }) {
@@ -40,6 +43,18 @@ export function EventForm({ eventId, initialData }) {
       } else {
         await eventsApi.create(form);
       }
+      router.push('/admin/eventos');
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  }
+
+  async function handlePublish() {
+    setLoading(true);
+    setError(null);
+    try {
+      await eventsApi.update(eventId, { status: 'published', visible: true });
       router.push('/admin/eventos');
     } catch (err) {
       setError(err.message);
@@ -142,7 +157,7 @@ export function EventForm({ eventId, initialData }) {
           </div>
 
           <div className="eventFormGroup">
-            <label htmlFor="href" className="eventFormLabel">Link</label>
+            <label htmlFor="href" className="eventFormLabel">Link externo</label>
             <input
               id="href"
               type="url"
@@ -152,6 +167,48 @@ export function EventForm({ eventId, initialData }) {
               placeholder="https://..."
             />
           </div>
+
+          <div className="eventFormGroup">
+            <label htmlFor="role" className="eventFormLabel">Minha participação</label>
+            <select
+              id="role"
+              className="eventFormSelect"
+              value={form.role}
+              onChange={e => setField('role', e.target.value)}
+            >
+              <option value="attendee">Participante</option>
+              <option value="speaker">Palestrante</option>
+              <option value="coordinator">Coordenador(a)</option>
+              <option value="organizer">Organizador(a)</option>
+            </select>
+          </div>
+
+          {(form.role === 'speaker' || form.role === 'coordinator' || form.role === 'organizer') && (
+            <>
+              <div className="eventFormGroup">
+                <label htmlFor="talkTitle" className="eventFormLabel">Título da palestra</label>
+                <input
+                  id="talkTitle"
+                  type="text"
+                  className="eventFormInput"
+                  value={form.talkTitle}
+                  onChange={e => setField('talkTitle', e.target.value)}
+                  placeholder="Nome da talk ou workshop"
+                />
+              </div>
+              <div className="eventFormGroup">
+                <label htmlFor="materialsHref" className="eventFormLabel">Link dos materiais</label>
+                <input
+                  id="materialsHref"
+                  type="url"
+                  className="eventFormInput"
+                  value={form.materialsHref}
+                  onChange={e => setField('materialsHref', e.target.value)}
+                  placeholder="Slides, repo, etc."
+                />
+              </div>
+            </>
+          )}
 
           <div className="eventFormGroup">
             <span className="eventFormLabel">Imagem de capa</span>
@@ -172,9 +229,14 @@ export function EventForm({ eventId, initialData }) {
               id="status"
               className="eventFormSelect"
               value={form.status}
-              onChange={e => setField('status', e.target.value)}
+              onChange={e => {
+                const novoStatus = e.target.value;
+                setField('status', novoStatus);
+                if (novoStatus !== 'published') setField('visible', false);
+              }}
             >
               <option value="draft">Rascunho</option>
+              <option value="ready">Pronto para revisar</option>
               <option value="published">Publicado</option>
             </select>
           </div>
@@ -205,6 +267,7 @@ export function EventForm({ eventId, initialData }) {
               <input
                 type="checkbox"
                 checked={form.visible}
+                disabled={form.status !== 'published'}
                 onChange={e => setField('visible', e.target.checked)}
               />
               <span className="eventFormToggleTrack">
@@ -221,6 +284,17 @@ export function EventForm({ eventId, initialData }) {
         </div>
 
         <div className="eventFormActions">
+          {isEditing && form.status !== 'published' && (
+            <button
+              type="button"
+              className="eventFormPublish"
+              disabled={loading}
+              onClick={handlePublish}
+            >
+              <span className="material-symbols-outlined">publish</span>
+              Publicar agora
+            </button>
+          )}
           <button
             type="submit"
             className="eventFormSubmit"

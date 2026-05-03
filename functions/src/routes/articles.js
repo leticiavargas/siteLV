@@ -2,12 +2,16 @@ import { makeRouter } from './makeRouter.js';
 import { db, storage } from '../admin.js';
 import { FieldValue } from 'firebase-admin/firestore';
 
-function filtrar(items, q) {
+function filtrar(items, q = '') {
+  const termo = String(q).toLowerCase().trim();
+
+  if (!termo) return items;
+
   return items.filter(
     i =>
-      i.title?.toLowerCase().includes(q) ||
-      i.excerpt?.toLowerCase().includes(q) ||
-      i.tags?.some(t => t.toLowerCase().includes(q)),
+      i.title?.toLowerCase().includes(termo) ||
+      i.excerpt?.toLowerCase().includes(termo) ||
+      i.tags?.some(t => String(t).toLowerCase().includes(termo)),
   );
 }
 
@@ -34,7 +38,20 @@ async function aoExcluir(dados) {
   await Promise.all(paths.map(p => bucket.file(p).delete({ ignoreNotFound: true })));
 }
 
-async function aoAtualizar(dadosAntigos, dadosNovos) {
+async function aoAtualizar(dadosAntigos, dadosNovos, docId) {
+  // Garante que apenas um artigo pode ser destaque
+  if (dadosNovos.featured === true) {
+    const snap = await db.collection('articles')
+      .where('featured', '==', true)
+      .get();
+    const batch = db.batch();
+    snap.docs.forEach(doc => {
+      if (doc.id !== docId) batch.update(doc.ref, { featured: false });
+    });
+    await batch.commit();
+  }
+
+  // Limpa imagens órfãs do Storage
   const pathsAntigos = extrairPathsDoStorage(dadosAntigos.content ?? '');
   const pathsNovos = extrairPathsDoStorage(dadosNovos.content ?? '');
   const orphans = pathsAntigos.filter(p => !pathsNovos.includes(p));

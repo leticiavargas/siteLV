@@ -1,15 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    browsersListForSwc: true,
-  },
   images: {
-    remotePatterns: [
+    unoptimized: true,
+  },
+  turbopack: {
+    root: '.',
+  },
+  async headers() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
+        source: '/admin/login',
+        headers: [
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups',
+          },
+        ],
       },
-    ],
+    ];
   },
 };
 

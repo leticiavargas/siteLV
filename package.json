@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@9.0.0",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "prepare:functions": "node scripts/prepare-functions.js",
+    "deploy": "pnpm build && pnpm prepare:functions && firebase deploy",
     "lint": "next lint"
   },
   "dependencies": {

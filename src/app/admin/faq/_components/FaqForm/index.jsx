@@ -10,7 +10,7 @@ const EMPTY_FORM = {
   answer: '',
   links: [],
   status: 'draft',
-  visible: true,
+  visible: false,
 };
 
 function LinksInput({ value, onChange }) {
@@ -94,6 +94,18 @@ export function FaqForm({ faqId, initialData }) {
     }
   }
 
+  async function handlePublish() {
+    setLoading(true);
+    setError(null);
+    try {
+      await faqApi.update(faqId, { status: 'published', visible: true });
+      router.push('/admin/faq');
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  }
+
   return (
     <form className="faqForm" onSubmit={handleSubmit} noValidate>
       {error && (
@@ -149,9 +161,14 @@ export function FaqForm({ faqId, initialData }) {
               id="status"
               className="faqFormSelect"
               value={form.status}
-              onChange={e => setField('status', e.target.value)}
+              onChange={e => {
+                const novoStatus = e.target.value;
+                setField('status', novoStatus);
+                if (novoStatus !== 'published') setField('visible', false);
+              }}
             >
               <option value="draft">Rascunho</option>
+              <option value="ready">Pronto para revisar</option>
               <option value="published">Publicado</option>
             </select>
           </div>
@@ -162,6 +179,7 @@ export function FaqForm({ faqId, initialData }) {
               <input
                 type="checkbox"
                 checked={form.visible}
+                disabled={form.status !== 'published'}
                 onChange={e => setField('visible', e.target.checked)}
               />
               <span className="faqFormToggleTrack">
@@ -178,6 +196,17 @@ export function FaqForm({ faqId, initialData }) {
         </div>
 
         <div className="faqFormActions">
+          {isEditing && form.status !== 'published' && (
+            <button
+              type="button"
+              className="faqFormPublish"
+              disabled={loading}
+              onClick={handlePublish}
+            >
+              <span className="material-symbols-outlined">publish</span>
+              Publicar agora
+            </button>
+          )}
           <button
             type="submit"
             className="faqFormSubmit"

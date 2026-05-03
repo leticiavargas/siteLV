@@ -1,19 +1,32 @@
 import './styles.css';
 
-const FORMATO_LABEL = {
+const FORMAT_LABEL = {
+  'in-person': 'Presencial',
+  'online': 'Online',
+  'hybrid': 'Híbrido',
   presencial: 'Presencial',
-  online: 'Online',
   hibrido: 'Híbrido',
 };
 
-const EventCard = ({ image, title, date, href, formato, vou }) => {
+const ROLE_LABEL = {
+  speaker: 'Palestrante',
+  coordinator: 'Coordenador(a)',
+  organizer: 'Organizador(a)',
+};
+
+const EventCard = ({ image, title, date, href, formato, vou, role }) => {
+  const isInternal = href?.startsWith('/');
+
   const content = (
     <>
-      {(formato || vou) && (
+      {(formato || vou || role) && (
         <ul className='eventCardBadges'>
+          {role && ROLE_LABEL[role] && (
+            <li className='eventCardBadge eventCardBadge--role'>{ROLE_LABEL[role]}</li>
+          )}
           {formato && (
             <li className={`eventCardBadge eventCardBadge--${formato}`}>
-              {FORMATO_LABEL[formato]}
+              {FORMAT_LABEL[formato]}
             </li>
           )}
           {vou && (
@@ -34,7 +47,13 @@ const EventCard = ({ image, title, date, href, formato, vou }) => {
     >
       <div className='eventCardOverlay'>
         {href
-          ? <a href={href} target="_blank" rel="noopener noreferrer" className='eventCardLink'>{content}</a>
+          ? <a
+              href={href}
+              {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className='eventCardLink'
+            >
+              {content}
+            </a>
           : content
         }
       </div>

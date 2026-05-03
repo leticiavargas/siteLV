@@ -15,6 +15,7 @@ function serializeDoc(snap) {
     ...data,
     createdAt: data.createdAt?.toDate?.().toISOString() ?? data.createdAt ?? null,
     publishedAt: data.publishedAt?.toDate?.().toISOString() ?? data.publishedAt ?? null,
+    updatedAt: data.updatedAt?.toDate?.().toISOString() ?? data.updatedAt ?? null,
   };
 }
 
@@ -24,33 +25,55 @@ export function makeRouter(colecao, filtrar, { aoExcluir, aoAtualizar } = {}) {
   // GET /?q=&page=&perPage=
   router.get('/', async (req, res) => {
     try {
-      const { q = '', page = '1', perPage = '10' } = req.query;
-      const snap = await db
-        .collection(colecao)
-        .orderBy('createdAt', 'desc')
-        .get();
+      const qs = (req.url || '').split('?')[1] || '';
+      const query = Object.fromEntries(new URLSearchParams(qs));
 
-      let items = snap.docs.map(serializeDoc);
+      const {
+        q = '',
+        page = '1',
+        perPage = '10',
+        status,
+        visible,
+        featured,
+      } = query;
 
-      if (q) items = filtrar(items, q.toLowerCase());
-      if (req.query.status) items = items.filter(i => i.status === req.query.status);
-      if (req.query.visible !== undefined) {
-        const visFiltro = req.query.visible === 'true';
-        // visible=true → inclui itens visíveis (true) e sem o campo (undefined = visível por padrão)
-        // visible=false → inclui somente itens explicitamente ocultos
-        items = items.filter(i => visFiltro ? i.visible !== false : i.visible === false);
+      const snap = await db.collection(colecao).get();
+
+      let items = snap.docs
+        .map(serializeDoc)
+        .sort((a, b) => {
+          const da = a.publishedAt ?? a.createdAt ?? '';
+          const db2 = b.publishedAt ?? b.createdAt ?? '';
+          return da < db2 ? 1 : da > db2 ? -1 : 0;
+        });
+
+      const termo = String(q).toLowerCase().trim();
+
+      if (termo) {
+        items = filtrar(items, termo.toLowerCase());
       }
-      if (req.query.featured !== undefined) {
-        const featFiltro = req.query.featured === 'true';
+
+      if (status) {
+        items = items.filter(i => i.status === status);
+      }
+
+      if (visible !== undefined) {
+        const visFiltro = visible === 'true';
+        items = items.filter(i => visFiltro ? i.visible === true : i.visible !== true);
+      }
+
+      if (featured !== undefined) {
+        const featFiltro = featured === 'true';
         items = items.filter(i => featFiltro ? i.featured === true : i.featured !== true);
       }
 
-      const total = items.length;
-      const p = parseInt(page, 10);
-      const pp = parseInt(perPage, 10);
-      const inicio = (p - 1) * pp;
 
-      res.json({ items: items.slice(inicio, inicio + pp), total });
+    const total = items.length;
+    const p = Math.max(parseInt(page, 10) || 1, 1);
+    const pp = Math.max(parseInt(perPage, 10) || 10, 1);
+    const inicio = (p - 1) * pp;
+
+    res.json({ items: items.slice(inicio, inicio + pp), total });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
@@ -86,9 +109,10 @@ export function makeRouter(colecao, filtrar, { aoExcluir, aoAtualizar } = {}) {
       const ref = db.collection(colecao).doc(req.params.id);
       const payload = { ...req.body };
 
-      const needsSnap =
-        aoAtualizar ||
-        (payload.status === 'published' && !payload.publishedAt);
+      // publishedAt é sempre controlado pelo servidor — nunca aceita do cliente
+      delete payload.publishedAt;
+
+      const needsSnap = aoAtualizar || payload.status === 'published' || payload.visible === true;
 
       let dadosAntigos = null;
       if (needsSnap) {
@@ -96,15 +120,21 @@ export function makeRouter(colecao, filtrar, { aoExcluir, aoAtualizar } = {}) {
         dadosAntigos = snap.data() ?? {};
       }
 
-      // Registra publishedAt na primeira vez que status muda para 'published'
-      if (payload.status === 'published' && !payload.publishedAt) {
-        if (!dadosAntigos?.publishedAt) {
-          payload.publishedAt = FieldValue.serverTimestamp();
-        }
+      // Rejeita visible: true se o status resultante não for published
+      const statusResultante = payload.status ?? dadosAntigos?.status;
+      if (payload.visible === true && statusResultante !== 'published') {
+        return res.status(400).json({ error: 'visible só pode ser true quando status for published' });
       }
 
+      // Grava publishedAt apenas na primeira publicação
+      if (payload.status === 'published' && !dadosAntigos?.publishedAt) {
+        payload.publishedAt = FieldValue.serverTimestamp();
+      }
+
+      payload.updatedAt = FieldValue.serverTimestamp();
+
       if (aoAtualizar && dadosAntigos) {
-        await aoAtualizar(dadosAntigos, req.body);
+        await aoAtualizar(dadosAntigos, req.body, req.params.id);
       }
 
       await ref.update(payload);

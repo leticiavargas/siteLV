@@ -72,9 +72,10 @@ export default function Eventos() {
                   image={event.imageUrl}
                   title={event.title}
                   date={formatDate(event.date, event.endDate)}
-                  href={event.href}
+                  href={`/eventos/${event.id}`}
                   formato={event.format}
                   vou={event.attending}
+                  role={event.role}
                 />
               </li>
             ))}

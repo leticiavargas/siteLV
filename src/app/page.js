@@ -48,6 +48,7 @@ export default async function Home() {
   }));
 
   const events = eventsData.items.map(e => ({
+    id: e.id,
     title: e.title,
     rawDate: e.date,
     href: e.href,

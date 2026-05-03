@@ -15,7 +15,7 @@ const EMPTY_FORM = {
   iconName: '',
   imageUrl: '',
   status: 'draft',
-  visible: true,
+  visible: false,
   featured: false,
   publishedAt: null,
 };
@@ -41,6 +41,18 @@ export function ArticleForm({ artigoId, initialData }) {
       } else {
         await articlesApi.create(form);
       }
+      router.push('/admin/artigos');
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  }
+
+  async function handlePublish() {
+    setLoading(true);
+    setError(null);
+    try {
+      await articlesApi.update(artigoId, { status: 'published', visible: false });
       router.push('/admin/artigos');
     } catch (err) {
       setError(err.message);
@@ -109,14 +121,13 @@ export function ArticleForm({ artigoId, initialData }) {
               className="articleFormSelect"
               value={form.status}
               onChange={e => {
-                const newStatus = e.target.value;
-                setField('status', newStatus);
-                if (newStatus === 'published' && !form.publishedAt) {
-                  setField('publishedAt', new Date().toISOString());
-                }
+                const novoStatus = e.target.value;
+                setField('status', novoStatus);
+                if (novoStatus !== 'published') setField('visible', false);
               }}
             >
               <option value="draft">Rascunho</option>
+              <option value="ready">Pronto para revisar</option>
               <option value="published">Publicado</option>
             </select>
           </div>
@@ -175,6 +186,7 @@ export function ArticleForm({ artigoId, initialData }) {
               <input
                 type="checkbox"
                 checked={form.visible}
+                disabled={form.status !== 'published'}
                 onChange={e => setField('visible', e.target.checked)}
               />
               <span className="articleFormToggleTrack">
@@ -191,6 +203,17 @@ export function ArticleForm({ artigoId, initialData }) {
         </div>
 
         <div className="articleFormActions">
+          {isEditing && form.status !== 'published' && (
+            <button
+              type="button"
+              className="articleFormPublish"
+              disabled={loading}
+              onClick={handlePublish}
+            >
+              <span className="material-symbols-outlined">publish</span>
+              Publicar agora
+            </button>
+          )}
           <button
             type="submit"
             className="articleFormSubmit"

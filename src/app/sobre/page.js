@@ -18,7 +18,7 @@ export default async function Sobre({ searchParams }) {
       <main>
         <PageHero
           title="Por trás do código"
-          subtitle="Desenvolvedora frontend, criadora de conteúdo e apaixonada por comunidade."
+          subtitle="Gaúcha, gateira. Intencional por escolha, plural por natureza e sutilmente irônica por necessidade."
           searchPlaceholder=""
         />
 
@@ -31,7 +31,7 @@ export default async function Sobre({ searchParams }) {
             </div>
 
             <div className='aboutText'>
-              <h2 className='aboutTitle'>Quem é a <strong>Letícia?</strong></h2>
+              <h2 className='aboutTitle'>Sobre o que acredito ...</h2>
 
               <p>
                 Construir software deve ter propósito, exige técnica, intenção e, acima de tudo, respeito por quem vai utiliza-los.
@@ -46,7 +46,7 @@ export default async function Sobre({ searchParams }) {
                 com elegância e sem excessos.
               </p>
               <p>
-                Sou essa dualidade, muitos interesses, muitos sonhos e um desejo por mudar o mundo. Sou uma <span>otimista cronica</span>, sempre buscando enxergar
+                Sou essa dualidade, muitos interesses, muitos sonhos e um desejo por mudar o mundo. Sou uma <span>otimista por teimosia</span>, sempre buscando enxergar
                 o lado bom da vida, manter a esperança e acreditar no potencial humano, mesmo quando o mundo parece caótico.
               </p>
               <p>
@@ -63,7 +63,7 @@ export default async function Sobre({ searchParams }) {
           <div className='aboutSkills'>
             <h3 className='aboutSkillsTitle'>Com o que trabalho</h3>
             <ul className='aboutSkillsList'>
-              {['React', 'Next.js', 'JavaScript', 'CSS', 'Figma', 'Git'].map((skill) => (
+              {['React', 'Next.js', 'JavaScript', 'CSS', 'Figma', 'Git', 'Firebase', 'GCP', 'React Native'].map((skill) => (
                 <li key={skill} className='aboutSkillsItem'>{skill}</li>
               ))}
             </ul>

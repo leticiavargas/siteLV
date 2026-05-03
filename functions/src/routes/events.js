@@ -10,13 +10,16 @@ function serializeDoc(snap) {
     id: snap.id,
     ...data,
     createdAt: data.createdAt?.toDate?.().toISOString() ?? data.createdAt ?? null,
+    publishedAt: data.publishedAt?.toDate?.().toISOString() ?? data.publishedAt ?? null,
+    updatedAt: data.updatedAt?.toDate?.().toISOString() ?? data.updatedAt ?? null,
   };
 }
 
 // GET /?q=&future=true&status=&visible=&page=&perPage=
 router.get('/', async (req, res) => {
   try {
-    const { q = '', page = '1', perPage = '10', future, past } = req.query;
+    const qs = (req.url || '').split('?')[1] || '';
+    const { q = '', page = '1', perPage = '10', future, past, status, visible } = Object.fromEntries(new URLSearchParams(qs));
 
     const snap = await db.collection('events').orderBy('date', 'asc').get();
 
@@ -24,19 +27,18 @@ router.get('/', async (req, res) => {
 
     if (q) {
       const ql = q.toLowerCase();
-      items = items.filter(
-        i =>
-          i.title?.toLowerCase().includes(ql) ||
-          i.location?.toLowerCase().includes(ql),
+      items = items.filter(i =>
+        i.title?.toLowerCase().includes(ql) ||
+        i.location?.toLowerCase().includes(ql),
       );
     }
 
-    if (req.query.status) {
-      items = items.filter(i => i.status === req.query.status);
+    if (status) {
+      items = items.filter(i => i.status === status);
     }
 
-    if (req.query.visible !== undefined) {
-      const visFiltro = req.query.visible === 'true';
+    if (visible !== undefined) {
+      const visFiltro = visible === 'true';
       items = items.filter(i => i.visible === visFiltro);
     }
 
@@ -45,7 +47,7 @@ router.get('/', async (req, res) => {
       items = items.filter(i => i.date >= hoje);
     }
 
-    if (req.query.past === 'true') {
+    if (past === 'true') {
       const hoje = new Date().toISOString().slice(0, 10);
       items = items.filter(i => i.date < hoje);
     }
@@ -98,15 +100,33 @@ router.put('/:id', async (req, res) => {
   try {
     const ref = db.collection('events').doc(req.params.id);
     const snap = await ref.get();
+
+    const dadosAntigos = snap.exists ? snap.data() : {};
+
     if (snap.exists) {
-      const urlAntiga = snap.data().imageUrl;
+      const urlAntiga = dadosAntigos.imageUrl;
       const urlNova = req.body.imageUrl;
       if (urlAntiga && urlAntiga !== urlNova) {
         const path = extrairPathDoStorage(urlAntiga);
         if (path) await storage.bucket().file(path).delete({ ignoreNotFound: true });
       }
     }
-    await ref.update(req.body);
+
+    const payload = { ...req.body };
+    delete payload.publishedAt;
+
+    const statusResultante = payload.status ?? dadosAntigos?.status;
+    if (payload.visible === true && statusResultante !== 'published') {
+      return res.status(400).json({ error: 'visible só pode ser true quando status for published' });
+    }
+
+    if (payload.status === 'published' && !dadosAntigos?.publishedAt) {
+      payload.publishedAt = FieldValue.serverTimestamp();
+    }
+
+    payload.updatedAt = FieldValue.serverTimestamp();
+
+    await ref.update(payload);
     res.json({ id: req.params.id, ...req.body });
   } catch (err) {
     res.status(500).json({ error: err.message });

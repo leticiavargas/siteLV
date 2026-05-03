@@ -7,7 +7,8 @@ const router = Router();
 // GET /check?email= — verifica se email tem acesso (usado pelo signIn callback)
 router.get('/check', async (req, res) => {
   try {
-    const { email } = req.query;
+    const qs = (req.url || '').split('?')[1] || '';
+    const { email } = Object.fromEntries(new URLSearchParams(qs));
     if (!email) return res.status(400).json({ error: 'email obrigatório' });
 
     const snap = await db.collection('adminUsers')
@@ -22,7 +23,7 @@ router.get('/check', async (req, res) => {
 });
 
 // GET / — lista todos os usuários admin
-router.get('/', async (req, res) => {
+router.get('/', async (_req, res) => {
   try {
     const snap = await db.collection('adminUsers')
       .orderBy('createdAt', 'desc')

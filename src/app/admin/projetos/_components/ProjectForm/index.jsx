@@ -17,7 +17,7 @@ const EMPTY_FORM = {
   repoHref: '',
   imageUrl: '',
   status: 'draft',
-  visible: true,
+  visible: false,
 };
 
 export function ProjectForm({ projectId, initialData }) {
@@ -41,6 +41,18 @@ export function ProjectForm({ projectId, initialData }) {
       } else {
         await projectsApi.create(form);
       }
+      router.push('/admin/projetos');
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  }
+
+  async function handlePublish() {
+    setLoading(true);
+    setError(null);
+    try {
+      await projectsApi.update(projectId, { status: 'published', visible: true });
       router.push('/admin/projetos');
     } catch (err) {
       setError(err.message);
@@ -141,9 +153,14 @@ export function ProjectForm({ projectId, initialData }) {
               id="status"
               className="projectFormSelect"
               value={form.status}
-              onChange={e => setField('status', e.target.value)}
+              onChange={e => {
+                const novoStatus = e.target.value;
+                setField('status', novoStatus);
+                if (novoStatus !== 'published') setField('visible', false);
+              }}
             >
               <option value="draft">Rascunho</option>
+              <option value="ready">Pronto para revisar</option>
               <option value="published">Publicado</option>
             </select>
           </div>
@@ -193,6 +210,7 @@ export function ProjectForm({ projectId, initialData }) {
               <input
                 type="checkbox"
                 checked={form.visible}
+                disabled={form.status !== 'published'}
                 onChange={e => setField('visible', e.target.checked)}
               />
               <span className="projectFormToggleTrack">
@@ -209,6 +227,17 @@ export function ProjectForm({ projectId, initialData }) {
         </div>
 
         <div className="projectFormActions">
+          {isEditing && form.status !== 'published' && (
+            <button
+              type="button"
+              className="projectFormPublish"
+              disabled={loading}
+              onClick={handlePublish}
+            >
+              <span className="material-symbols-outlined">publish</span>
+              Publicar agora
+            </button>
+          )}
           <button
             type="submit"
             className="projectFormSubmit"

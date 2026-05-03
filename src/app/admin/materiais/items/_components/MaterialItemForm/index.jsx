@@ -15,7 +15,7 @@ const EMPTY_FORM = {
   href: '',
   areaId: '',
   status: 'draft',
-  visible: true,
+  visible: false,
 };
 
 const TIPOS = ['Artigo', 'Guia', 'Vídeo'];
@@ -41,6 +41,18 @@ export function MaterialItemForm({ itemId, initialData, areas = [] }) {
       } else {
         await materialItemsApi.create(form);
       }
+      router.push('/admin/materiais');
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  }
+
+  async function handlePublish() {
+    setLoading(true);
+    setError(null);
+    try {
+      await materialItemsApi.update(itemId, { status: 'published', visible: false });
       router.push('/admin/materiais');
     } catch (err) {
       setError(err.message);
@@ -182,9 +194,14 @@ export function MaterialItemForm({ itemId, initialData, areas = [] }) {
               id="status"
               className="materialItemFormSelect"
               value={form.status}
-              onChange={e => setField('status', e.target.value)}
+              onChange={e => {
+                const novoStatus = e.target.value;
+                setField('status', novoStatus);
+                if (novoStatus !== 'published') setField('visible', false);
+              }}
             >
               <option value="draft">Rascunho</option>
+              <option value="ready">Pronto para revisar</option>
               <option value="published">Publicado</option>
             </select>
           </div>
@@ -195,6 +212,7 @@ export function MaterialItemForm({ itemId, initialData, areas = [] }) {
               <input
                 type="checkbox"
                 checked={form.visible}
+                disabled={form.status !== 'published'}
                 onChange={e => setField('visible', e.target.checked)}
               />
               <span className="materialItemFormToggleTrack">
@@ -211,6 +229,17 @@ export function MaterialItemForm({ itemId, initialData, areas = [] }) {
         </div>
 
         <div className="materialItemFormActions">
+          {isEditing && form.status !== 'published' && (
+            <button
+              type="button"
+              className="materialItemFormPublish"
+              disabled={loading}
+              onClick={handlePublish}
+            >
+              <span className="material-symbols-outlined">publish</span>
+              Publicar agora
+            </button>
+          )}
           <button
             type="submit"
             className="materialItemFormSubmit"

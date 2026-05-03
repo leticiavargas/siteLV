@@ -4,7 +4,6 @@ export const dynamic = 'force-dynamic';
 import { Header, Footer } from '../../components';
 import { ArticleHero } from '../../components/ArticleHero';
 import { RelatedArticles } from '../../components/RelatedArticles';
-import { ArticleSidebar } from '../../components/ArticleSidebar';
 import { ShareButton } from './ShareButton';
 import { ClapButton } from './ClapButton';
 import { articlesApi } from '@/lib/api';
@@ -30,9 +29,13 @@ export default async function ArtigoDetalhe({ params }) {
     articlesApi.list({ status: 'published', visible: true, perPage: 100 }),
   ]);
 
-  const date = artigo.createdAt
-    ? new Date(artigo.createdAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
+  const date = artigo.publishedAt
+    ? new Date(artigo.publishedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
     : '';
+
+  const updatedDate = artigo.updatedAt && artigo.publishedAt && artigo.updatedAt > artigo.publishedAt
+    ? new Date(artigo.updatedAt).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })
+    : null;
 
   const relatedArticles = getRelatedArticles(allData.items, artigo.id, artigo.tags ?? []).map(a => ({
     title: a.title,
@@ -59,6 +62,10 @@ export default async function ArtigoDetalhe({ params }) {
             dangerouslySetInnerHTML={{ __html: artigo.content }}
           />
 
+          {updatedDate && (
+            <p className='articlePageUpdated'>Atualizado em {updatedDate}</p>
+          )}
+
           <div className='articlePageShare'>
             <ClapButton articleId={artigo.id} initialClaps={artigo.claps ?? 0} />
             <ShareButton />
@@ -67,11 +74,6 @@ export default async function ArtigoDetalhe({ params }) {
 
         <section className='articlePageBottom'>
           <RelatedArticles articles={relatedArticles} />
-          <ArticleSidebar
-            description="Lorem ipsum dolor sit amet consectetur. Semper risus et aliquet tincidunt quis neque. Tristique tristique vitae euismod gravida a risus. Et ipsum vitae ultrices ligula in. Nisl nunc odio orci nulla. Tempor varius dui purus sit sed mattis porttitor sit."
-            communityText="Entre para uma comunidade com mais gente começando na carreira de dev!"
-            communityHref="#"
-          />
         </section>
       </main>
       <Footer />

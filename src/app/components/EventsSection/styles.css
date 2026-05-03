@@ -162,6 +162,11 @@
   font-size: 0.875rem;
   font-weight: var(--bold);
   color: var(--secondary-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .eventsAgendaSubtitle {

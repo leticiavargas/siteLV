@@ -7,16 +7,50 @@
  * Em produção:       https://us-central1-leticiavargassite.cloudfunctions.net/api
  */
 
-const BASE = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL;
+const BASE = (process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL ?? '').replace(/\/$/, '');
 
 async function req(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
+  if (!BASE) {
+    throw new Error('API_URL ou NEXT_PUBLIC_API_URL não configurada');
+  }
+  
+  const url = `${BASE}${path.startsWith('/') ? path : `/${path}`}`;
+  console.log('REQ URL:', url);
+
+  const res = await fetch(url, {
+    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
     ...options,
   });
+
   if (res.status === 204) return null;
+
+  const contentType = res.headers.get('content-type') || '';
+
+  if (!contentType.includes('application/json')) {
+    const text = await res.text();
+
+    console.error('API retornou resposta não JSON', {
+      url,
+      status: res.status,
+      contentType,
+      preview: text.slice(0, 300),
+    });
+
+    throw new Error(`API retornou resposta não JSON: ${url}`);
+  }
+
   const data = await res.json();
-  if (!res.ok) throw new Error(data.error ?? `Erro ${res.status}`);
+
+  if (!res.ok) {
+    console.error('Erro retornado pela API', {
+      url,
+      status: res.status,
+      data,
+    });
+
+    throw new Error(data.error ?? `Erro ${res.status}`);
+  }
+
   return data;
 }
 

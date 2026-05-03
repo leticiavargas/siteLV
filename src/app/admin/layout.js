@@ -1,4 +1,4 @@
-import { auth, signOut } from '@/auth';
+import { AdminLogout } from './_components/AdminLogout';
 import './layout.css';
 
 const NAV_ITEMS = [
@@ -17,9 +17,7 @@ export const metadata = {
   title: 'Admin — Letícia Vargas',
 };
 
-export default async function AdminLayout({ children }) {
-  const session = await auth();
-
+export default function AdminLayout({ children }) {
   return (
     <div className='adminShell'>
       <aside className='adminSidebar'>
@@ -51,29 +49,9 @@ export default async function AdminLayout({ children }) {
 
       <div className='adminMain'>
         <header className='adminTopbar'>
-          {session?.user && (
-            <div className='adminTopbarUser'>
-              {session.user.image && (
-                <img
-                  src={session.user.image}
-                  alt={session.user.name ?? 'Usuária'}
-                  className='adminUserAvatar'
-                  width={32}
-                  height={32}
-                  referrerPolicy="no-referrer"
-                />
-              )}
-              <span className='adminUserName'>{session.user.name}</span>
-              <form action={async () => {
-                'use server';
-                await signOut({ redirectTo: '/admin/login' });
-              }}>
-                <button type="submit" className='adminSignOutBtn' aria-label="Sair">
-                  <span className='material-symbols-outlined'>logout</span>
-                </button>
-              </form>
-            </div>
-          )}
+          <div className='adminTopbarUser'>
+            <AdminLogout />
+          </div>
         </header>
 
         <main className='adminContent'>

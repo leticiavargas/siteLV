@@ -76,3 +76,8 @@
   color: var(--neutral-color-100);
   border: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
 }
+
+.eventCardBadge--role {
+  background-color: color-mix(in srgb, var(--primary-color) 70%, transparent);
+  color: var(--color-white);
+}

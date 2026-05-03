@@ -19,6 +19,11 @@ const ClapButton = ({ articleId, initialClaps = 0 }) => {
   useEffect(() => {
     const saved = parseInt(localStorage.getItem(STORAGE_KEY(articleId)) ?? '0', 10);
     setMyClaps(saved);
+
+    fetch(`${API_BASE}/articles/${articleId}`, { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => { if (typeof data.claps === 'number') setTotalClaps(data.claps); })
+      .catch(() => {});
   }, [articleId]);
 
   const flush = useCallback(async () => {
@@ -80,10 +85,10 @@ const ClapButton = ({ articleId, initialClaps = 0 }) => {
             <span className='clapFloat' aria-hidden="true">+{floatCount}</span>
           )}
           <svg className='clapIcon' viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M8.5 4.5L9.5 2M11.5 4L13 1.5M14.5 4.5L17 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            <path d="M9.5 7.5C9.5 6.7 10.05 6 10.85 5.85C11.65 5.7 12.4 6.15 12.65 6.9L13 8M9.5 7.5L7 14.5C7 14.5 6.5 16.5 8.5 18C10.5 19.5 14 19.5 16 17.5C17 16.5 17 14.5 16.5 13L14 7.5C13.75 6.75 13 6.3 12.2 6.45C11.4 6.6 11 7.35 11 8.1V8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M9.5 7.5L9 9M11 8.5V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            <path d="M13 8L14.5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <path d="M7 11.5V6.5a1.5 1.5 0 0 1 3 0v5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M10 7.5V5a1.5 1.5 0 0 1 3 0v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M13 6.5V8a1.5 1.5 0 0 1 3 0v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M16 11.5V10a1.5 1.5 0 0 1 3 0v3c0 4-2.5 7-6.5 7S6 17 6 13v-1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
         <span className='clapCount'>{totalClaps}</span>

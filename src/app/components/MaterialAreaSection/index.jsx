@@ -17,6 +17,7 @@ const MaterialAreaSection = ({ id, title, description, materials = [] }) => {
               type={material.type}
               iconName={material.iconName}
               href={material.href}
+              area={title}
             />
           </li>
         ))}

@@ -2,10 +2,16 @@ import './styles.css';
 import { Icon } from '../Icon';
 import { Tag } from '../tag';
 
-const MaterialCard = ({ title, description, type, iconName = 'description', href = '#' }) => {
+const MaterialCard = ({ title, description, type, iconName = 'description', href = '#', area }) => {
   return (
     <article className='materialCard'>
-      <a href={href} className='materialCardLink'>
+      <a
+        href={href}
+        className='materialCardLink'
+        data-material-title={title}
+        data-material-type={type}
+        data-material-area={area}
+      >
         <span className='materialCardIcon'>
           <Icon iconName={iconName} />
         </span>

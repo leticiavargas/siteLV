@@ -10,7 +10,7 @@ const EMPTY_FORM = {
   iconName: '',
   description: '',
   status: 'draft',
-  visible: true,
+  visible: false,
 };
 
 function slugify(str) {
