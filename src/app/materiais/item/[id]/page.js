@@ -90,6 +90,28 @@ export default async function MaterialDetalhe({ params }) {
                   </a>
                 </footer>
               )}
+              {Array.isArray(material.sources) && material.sources.length > 0 && (
+                <aside className='materialDetalheFontes'>
+                  <p className='materialDetalheFontesTitle'>Fontes e leituras recomendadas</p>
+                  <ul className='materialDetalhefontesList'>
+                    {material.sources.map((source, i) => (
+                      <li key={i} className='materialDetalheFontesItem'>
+                        {source.label && (
+                          <span className='materialDetalheFontesItemLabel'>{source.label}</span>
+                        )}
+                        <a
+                          href={source.url.startsWith('http') ? source.url : `https://${source.url}`}
+                          className='materialDetalheFontesItemLink'
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
+                          {source.url}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              )}
             </>
           ) : material.href ? (
             <section className='materialDetalheExterno'>

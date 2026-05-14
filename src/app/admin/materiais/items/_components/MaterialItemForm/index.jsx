@@ -16,6 +16,7 @@ const EMPTY_FORM = {
   areaId: '',
   status: 'draft',
   visible: false,
+  sources: [],
 };
 
 const TIPOS = ['Artigo', 'Guia', 'Vídeo'];
@@ -29,6 +30,25 @@ export function MaterialItemForm({ itemId, initialData, areas = [] }) {
 
   function setField(field, value) {
     setForm(prev => ({ ...prev, [field]: value }));
+  }
+
+  function addSource() {
+    setForm(prev => ({ ...prev, sources: [...(prev.sources ?? []), { label: '', url: '' }] }));
+  }
+
+  function updateSource(index, key, value) {
+    setForm(prev => {
+      const updated = [...(prev.sources ?? [])];
+      updated[index] = { ...updated[index], [key]: value };
+      return { ...prev, sources: updated };
+    });
+  }
+
+  function removeSource(index) {
+    setForm(prev => ({
+      ...prev,
+      sources: (prev.sources ?? []).filter((_, i) => i !== index),
+    }));
   }
 
   async function handleSubmit(e) {
@@ -119,6 +139,43 @@ export function MaterialItemForm({ itemId, initialData, areas = [] }) {
               onChange={value => setField('content', value)}
               pasta="materiais"
             />
+          </div>
+
+          <div className="materialItemFormGroup">
+            <span className="materialItemFormLabel">Fontes e leituras recomendadas</span>
+            <p className="materialItemFormHint">Listadas ao final do material. Ex: "Documentação oficial" + react.dev</p>
+            {(form.sources ?? []).map((source, i) => (
+              <div key={i} className="materialItemFormSourceRow">
+                <input
+                  type="text"
+                  className="materialItemFormInput"
+                  value={source.label}
+                  onChange={e => updateSource(i, 'label', e.target.value)}
+                  placeholder="Rótulo (ex: Documentação oficial)"
+                  aria-label={`Rótulo da fonte ${i + 1}`}
+                />
+                <input
+                  type="text"
+                  className="materialItemFormInput"
+                  value={source.url}
+                  onChange={e => updateSource(i, 'url', e.target.value)}
+                  placeholder="URL (ex: react.dev)"
+                  aria-label={`URL da fonte ${i + 1}`}
+                />
+                <button
+                  type="button"
+                  className="materialItemFormSourceRemove"
+                  onClick={() => removeSource(i)}
+                  aria-label="Remover fonte"
+                >
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+              </div>
+            ))}
+            <button type="button" className="materialItemFormSourceAdd" onClick={addSource}>
+              <span className="material-symbols-outlined">add</span>
+              Adicionar fonte
+            </button>
           </div>
 
           <div className="materialItemFormGroup">

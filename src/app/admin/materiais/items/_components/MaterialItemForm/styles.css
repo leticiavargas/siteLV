@@ -112,6 +112,64 @@
   padding-right: 2.5rem;
 }
 
+/* ── Sources ─────────────────────────────────────────────────── */
+
+.materialItemFormSourceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.375rem;
+}
+
+.materialItemFormSourceRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: color-mix(in srgb, #e53e3e 10%, transparent);
+  color: #c53030;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: color-mix(in srgb, #e53e3e 20%, transparent);
+  }
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+  }
+}
+
+.materialItemFormSourceAdd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px dashed var(--neutral-color-300);
+  border-radius: 0.5rem;
+  background: none;
+  font-size: 0.8125rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-family: var(--font-inter);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--primary-color);
+    background-color: color-mix(in srgb, var(--primary-color) 5%, transparent);
+  }
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+  }
+}
+
 /* ── Icon preview ────────────────────────────────────────────── */
 
 .materialItemFormIconWrapper {

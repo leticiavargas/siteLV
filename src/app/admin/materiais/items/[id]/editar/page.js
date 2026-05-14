@@ -44,14 +44,16 @@ export default async function EditarMaterial({ params }) {
         itemId={id}
         areas={areas}
         initialData={{
-          title: item.title,
-          description: item.description,
-          type: item.type,
-          iconName: item.iconName,
-          href: item.href,
-          areaId: item.areaId,
-          status: item.status,
-          visible: item.visible,
+          title: item.title ?? '',
+          description: item.description ?? '',
+          content: item.content ?? '',
+          type: item.type ?? 'Artigo',
+          iconName: item.iconName ?? '',
+          href: item.href ?? '',
+          areaId: item.areaId ?? '',
+          status: item.status ?? 'draft',
+          visible: item.visible ?? false,
+          sources: item.sources ?? [],
         }}
       />
     </>
