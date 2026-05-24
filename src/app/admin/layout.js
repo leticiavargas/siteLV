@@ -1,4 +1,5 @@
 import { AdminLogout } from './_components/AdminLogout';
+import { SessionRefresher } from './_components/SessionRefresher';
 import './layout.css';
 
 const NAV_ITEMS = [
@@ -20,6 +21,7 @@ export const metadata = {
 export default function AdminLayout({ children }) {
   return (
     <div className='adminShell'>
+      <SessionRefresher />
       <aside className='adminSidebar'>
         <div className='adminSidebarBrand'>
           <span className='adminSidebarBrandName'>letícia vargas</span>

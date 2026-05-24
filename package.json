@@ -12,10 +12,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tiptap/extension-image": "^3.22.2",
-    "@tiptap/pm": "^3.22.1",
-    "@tiptap/react": "^3.22.1",
-    "@tiptap/starter-kit": "^3.22.1",
+    "@tiptap/core": "^3.23.4",
+    "@tiptap/extension-bubble-menu": "^3.23.4",
+    "@tiptap/extension-image": "^3.23.4",
+    "@tiptap/extension-text-align": "^3.23.4",
+    "@tiptap/pm": "^3.23.4",
+    "@tiptap/react": "^3.23.4",
+    "@tiptap/starter-kit": "^3.23.4",
     "firebase": "^12.11.0",
     "material-symbols": "^0.44.0",
     "next": "16.1.6",

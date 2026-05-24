@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Leitura pública — conteúdo do site (imagens de artigos, materiais, etc.)
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if false; // escrita só via firebase-admin nas Cloud Functions
+    }
+  }
+}
