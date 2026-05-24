@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, onIdTokenChanged } from 'firebase/auth';
 import { auth, googleProvider } from '@/lib/firebase-client';
 import logo from '@images/logo.webp';
 import './styles.css';
@@ -16,10 +16,14 @@ export default function AdminLogin() {
     setLoading(true);
     setError(null);
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const token = await result.user.getIdToken();
-      document.cookie = `__session=${token}; path=/; max-age=3600; SameSite=Lax`;
-      window.location.href = '/admin';
+      await signInWithPopup(auth, googleProvider);
+      onIdTokenChanged(auth, async (user) => {
+        if (user) {
+          const token = await user.getIdToken();
+          document.cookie = `__session=${token}; path=/; max-age=86400; SameSite=Lax`;
+          window.location.href = '/admin';
+        }
+      });
     } catch (err) {
       if (err.code !== 'auth/popup-closed-by-user') {
         setError('Erro ao fazer login. Tente novamente.');

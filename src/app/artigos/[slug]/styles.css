@@ -105,6 +105,32 @@
     display: block;
     margin: 0.5rem 0;
   }
+
+  figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+
+    &[data-align="center"] {
+      align-items: center;
+    }
+
+    &[data-align="right"] {
+      align-items: flex-end;
+    }
+
+    img {
+      margin: 0;
+    }
+  }
+
+  figcaption {
+    font-size: 0.875rem;
+    color: color-mix(in srgb, var(--neutral-color-900) 55%, transparent);
+    font-style: italic;
+    line-height: 1.5;
+  }
 }
 
 .articlePageShare {
